@@ -1,0 +1,9 @@
+.user-info {
+    display: flex;
+    align-self: center;    
+    flex-wrap: wrap;
+    align-items: baseline;
+    max-width: 336px;
+    margin-left: 30px;
+    color: #fff;
+}

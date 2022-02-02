@@ -1,0 +1,16 @@
+.user-info__edit-button {
+    background-image: url('../../../images/edit-button.svg'); 
+    object-fit: cover;
+    object-position: center; 
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+    background-color: black;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: 18px;
+    
+  }
+  

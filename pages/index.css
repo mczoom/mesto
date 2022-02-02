@@ -1,0 +1,27 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/InterWeb/inter.css);
+@import url(../blocks/root/root.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/user/user.css);
+@import url(../blocks/user/__avatar/user__avatar.css);
+@import url(../blocks/user-info/user-info.css);
+@import url(../blocks/user-info/__user-name/user-info__user-name.css);
+@import url(../blocks/user-info/__user-description/user-info__user-description.css);
+@import url(../blocks/user-info/__edit-button/user-info__edit-button.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+
+
+
+
+.header__logo {
+  align-self: flex-start;
+}
+
+
+
+
+
+
+
+
