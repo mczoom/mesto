@@ -8,10 +8,12 @@
     text-rendering: optimizeLegibility;
     background-color: #000;
     padding-top: 45px;
+    padding-bottom: 60px;
   }
 
-  @media screen and (max-width: 484px) {
+  @media screen and (max-width: 424px) {
     .root {
       padding-top: 28px;
+      padding-bottom: 36px;
     }  
   }
