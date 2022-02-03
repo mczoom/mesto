@@ -1,6 +1,5 @@
 .profile__add-button {
-    background-image: url('../../../images/add-button.svg'); 
-    
+    background-image: url('../../../images/add-button.svg');     
     align-self: center; 
     object-fit: cover;
     object-position: center; 
@@ -12,4 +11,11 @@
     border: 1px solid #fff;
     box-sizing: border-box;
     padding: 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    .profile__add-button {
+      width: 282px;      
+      margin-top: 36px;
+    }  
   }

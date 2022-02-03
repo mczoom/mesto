@@ -9,3 +9,9 @@
     background-color: #000;
     padding-top: 45px;
   }
+
+  @media screen and (max-width: 484px) {
+    .root {
+      padding-top: 28px;
+    }  
+  }

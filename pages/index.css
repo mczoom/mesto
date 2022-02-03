@@ -2,6 +2,7 @@
 @import url(../vendor/fonts/InterWeb/inter.css);
 @import url(../blocks/root/root.css);
 @import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/user/user.css);
 @import url(../blocks/user/__avatar/user__avatar.css);
@@ -14,9 +15,7 @@
 
 
 
-.header__logo {
-  align-self: flex-start;
-}
+
 
 
 
