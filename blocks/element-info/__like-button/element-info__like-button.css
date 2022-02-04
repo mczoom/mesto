@@ -8,8 +8,4 @@
 
   .element-info__like-button:hover {
     opacity: .5;
-  }
-  
-  .element-info__like-button_active {
-    background-image: url('../../../images/like-button_active.svg');  
-  }
+  }  
