@@ -20,6 +20,7 @@
 @import url(../blocks/element-info/__title/element-info__title.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_off/popup_off.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/container/__close-button/container__close-button.css);
 @import url(../blocks/container/__title/container__title.css);
