@@ -1,3 +1,25 @@
+let userName = document.querySelector('.user-info__user-name');
+let popupUserName = document.querySelector('.container__user-name')
+
+function fillPopupUserName() {
+    popupUserName.value = userName.textContent;
+}
+
+fillPopupUserName();
+
+
+
+let userOccupation = document.querySelector('.user-info__user-occupation');
+let popupUserOccupation = document.querySelector('.container__user-occupation');
+
+function fillPopupUserOccupation() {
+    popupUserOccupation.value = userOccupation.textContent;
+}
+
+fillPopupUserOccupation();
+
+
+
 let editButton = document.querySelector('.user-info__edit-button');
 let popup = document.querySelector('.popup');
 
@@ -23,11 +45,3 @@ popupCloseButton.addEventListener('click', popupCloseByButton);
 
 
 
-let likeButton = document.querySelectorAll('.element-info__like-button');
-
-function useLikeButton() {
-    likeButton.classList.toggle('element-info__like-button_active');
-}
-
-console.log(likeButton.classList);
-likeButton.addEventListener('click', useLikeButton);
