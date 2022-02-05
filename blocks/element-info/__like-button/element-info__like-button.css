@@ -4,6 +4,7 @@
     background-color: #fff;
     width: 22px;
     height: 19px;  
+    padding: 0;
   }
 
   .element-info__like-button:hover {
