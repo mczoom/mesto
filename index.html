@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./pages/index.css">
-  <link rel="icon" href="#">
+  <link rel="icon" href="./images/redhat-favicon.jpg">
   <title>Mesto</title>
 </head>
 <body>
@@ -17,8 +17,10 @@
         <div class="user">
           <img src="images/avatar-image.jpg" class="user__avatar" alt="улыбающийся Жак-Ив Кусто в своей легендарной красной шапке">
           <div class="user-info">
-            <h1 class="user-info__user-name">Жак-Ив Кусто</h1>
-            <button class="user-info__edit-button"></button>
+            <div class="user-info__wrap">
+              <h1 class="user-info__user-name">Жак-Ив Кусто</h1>
+              <button class="user-info__edit-button"></button>
+            </div>
             <p class="user-info__user-occupation">Исследователь океана</p>
           </div>
         </div>  
@@ -94,7 +96,6 @@
       <p class="footer__copyright">&copy;2022 Mesto Russia</p>
     </footer>
   </div>
-  <script src="./script.js"></script>
+  <script src="./index.js"></script>
 </body>
 </html>
-

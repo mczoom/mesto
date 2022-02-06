@@ -1,9 +1,9 @@
 .user-info {
     display: flex;
+    flex-direction: column;
     align-self: center;    
     flex-wrap: wrap;
-    align-items: baseline;
-    max-width: 500px;
+    align-items: baseline;    
     margin-left: 30px;
     color: #fff;
 }
@@ -12,5 +12,6 @@
     .user-info {
       justify-content: center;  
       margin: 26px auto 0;
+      align-items: center;
     }  
   }

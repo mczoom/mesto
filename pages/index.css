@@ -8,6 +8,7 @@
 @import url(../blocks/user/user.css);
 @import url(../blocks/user/__avatar/user__avatar.css);
 @import url(../blocks/user-info/user-info.css);
+@import url(../blocks/user-info/__wrap/user-info__wrap.css);
 @import url(../blocks/user-info/__user-name/user-info__user-name.css);
 @import url(../blocks/user-info/__user-occupation/user-info__user-occupation.css);
 @import url(../blocks/user-info/__edit-button/user-info__edit-button.css);
@@ -29,3 +30,4 @@
 @import url(../blocks/container/__user-name/container__user-name.css);
 @import url(../blocks/container/__user-occupation/container__user-occupation.css);
 @import url(../blocks/container/__submit-button/container__submit-button.css);
+@import url(../blocks/footer/footer.css);
