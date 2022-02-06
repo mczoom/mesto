@@ -12,3 +12,9 @@
       margin-left: auto;
     }  
   }
+
+  @media screen and (max-width: 424px) {
+    .user {
+      width: 100%;
+    }  
+  }
