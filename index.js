@@ -18,7 +18,7 @@ function fillPopupUserOccupation() {
 
 
 
-const editButton = document.querySelector('.user-info__edit-button');
+const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 
 function editProfile(evt) {
