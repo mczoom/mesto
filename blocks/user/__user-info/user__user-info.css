@@ -1,4 +1,4 @@
-.user-info {
+.user__user-info {
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .user-info {
+    .user__user-info {
       justify-content: center;
       margin: 26px auto 0;
       align-items: center;
@@ -15,7 +15,7 @@
   }
 
   @media screen and (max-width: 424px) {
-    .user-info {
+    .user__user-info {
       max-width: 282px;
     }  
   }

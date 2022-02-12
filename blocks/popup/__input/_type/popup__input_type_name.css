@@ -1,9 +1,9 @@
-.popup-container__user-name {
+.popup__input_type_name {
     margin: 54px auto 30px;
   }  
 
   @media screen and (max-width: 767px) {
-    .popup-container__user-name {
+    .popup__input_type_name {
       margin-top: 75px;
     }  
   }

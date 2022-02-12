@@ -14,9 +14,9 @@
     </header>
     <main>
       <section class="profile">
-        <div class="user">
+        <div class="profile__user">
           <img src="images/avatar-image.jpg" class="user__avatar" alt="улыбающийся Жак-Ив Кусто в своей легендарной красной шапке">
-          <div class="user-info">
+          <div class="user__user-info">
             <div class="user-info__wrap">
               <h1 class="user-info__user-name">Жак-Ив Кусто</h1>
               <button class="user-info__edit-button"></button>
@@ -27,68 +27,68 @@
         <button class="profile__add-button"></button>
       </section>
       <section class="elements">
-        <div class="element">
-          <a href="#" class="link">
-            <img class="element__image" src="./images/grid-photos/ocean.jpg" alt="коралловый риф снятый под водой">
+        <div class="elements__item">
+          <a href="#" class="item__link link">
+            <img class="item__image" src="./images/grid-photos/ocean.jpg" alt="коралловый риф снятый под водой">
           </a>  
-          <div class="element-info">  
-            <p class="element-info__title">Черное море</p>  
-            <button class="element-info__like-button"></button>
+          <div class="item__info">  
+            <p class="item__title">Черное море</p>  
+            <button class="item__like-button"></button>
           </div>              
         </div>  
-        <div class="element">
-          <a href="#" class="link">
-            <img class="element__image" src="./images/grid-photos/morning-ocean.jpg" alt="поверхность озера при слабом ветре">
+        <div class="elements__item">
+          <a href="#" class="item__link link">
+            <img class="item__image" src="./images/grid-photos/morning-ocean.jpg" alt="поверхность озера при слабом ветре">
           </a>
-          <div class="element-info">  
-            <p class="element-info__title">Ладожское озеро</p>  
-            <button class="element-info__like-button"></button>
+          <div class="item__info">  
+            <p class="item__title">Ладожское озеро</p>  
+            <button class="item__like-button"></button>
           </div>              
         </div>  
-        <div class="element">
-          <a href="#" class="link">
-            <img class="element__image" src="./images/grid-photos/coast.jpg" alt="волны накатывают на берег">
+        <div class="elements__item">
+          <a href="#" class="item__link link">
+            <img class="item__image" src="./images/grid-photos/coast.jpg" alt="волны накатывают на берег">
           </a>  
-          <div class="element-info">  
-            <p class="element-info__title">Тихий океан</p>  
-            <button class="element-info__like-button"></button>
+          <div class="item__info">  
+            <p class="item__title">Тихий океан</p>  
+            <button class="item__like-button"></button>
           </div>              
         </div>  
-        <div class="element">
-          <a href="#" class="link">
-            <img class="element__image" src="./images/grid-photos/ship.jpg" alt="корма корабля оставляет бурлящий след на воде">
+        <div class="elements__item">
+          <a href="#" class="item__link link">
+            <img class="item__image" src="./images/grid-photos/ship.jpg" alt="корма корабля оставляет бурлящий след на воде">
           </a>  
-          <div class="element-info">  
-            <p class="element-info__title">Черное море</p>  
-            <button class="element-info__like-button"></button>
+          <div class="item__info">  
+            <p class="item__title">Черное море</p>  
+            <button class="item__like-button"></button>
           </div>              
         </div>  
-        <div class="element">
-          <a href="#" class="link">
-            <img class="element__image" src="./images/grid-photos/moonlight-ocean.jpg" alt="ночное море освещенное яркой луной">
+        <div class="elements__item">
+          <a href="#" class="item__link link">
+            <img class="item__image" src="./images/grid-photos/moonlight-ocean.jpg" alt="ночное море освещенное яркой луной">
           </a>  
-          <div class="element-info">  
-            <p class="element-info__title">Море Лаптевых</p>  
-            <button class="element-info__like-button"></button>
+          <div class="item__info">  
+            <p class="item__title">Море Лаптевых</p>  
+            <button class="item__like-button"></button>
           </div>              
         </div>  
-        <div class="element">
-          <a href="#" class="link">
-            <img class="element__image" src="./images/grid-photos/boats.jpg" alt="4 разноцветные рыболовные шхуны стоят на песчаном берегу Каспия">
+        <div class="elements__item">
+          <a href="#" class="item__link link">
+            <img class="item__image" src="./images/grid-photos/boats.jpg" alt="4 разноцветные рыболовные шхуны стоят на песчаном берегу Каспия">
           </a>  
-          <div class="element-info">  
-            <p class="element-info__title">Рыболовные шхуны в Астрахани</p>  
-            <button class="element-info__like-button"></button>
+          <div class="item__info">  
+            <p class="item__title">Рыболовные шхуны в Астрахани</p>  
+            <button class="item__like-button"></button>
           </div>              
         </div>
       </section>
       <div class="popup">
-        <form class="popup-container">
-          <button class="popup-container__close-button"></button>
-          <p class="popup-container__title">Редактировать профиль</p>
-          <input class="popup-container__user-name form-field" name="username" type="text">
-          <input class="popup-container__user-occupation form-field" name="useroccupation" type="text">
-          <button class="popup-container__submit-button" type="submit"></button>
+        <form class="popup__popup-container" name="popup-container">
+          <button class="popup__close-button"></button>
+          <p class="popup__title">Редактировать профиль</p>
+          <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="username" type="text">
+          <input class="popup__input popup__input_type_occupation" placeholder="Введите информацию о себе" name="useroccupation" type="text">
+          <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
       </div>
     </main>
