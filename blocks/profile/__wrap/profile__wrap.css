@@ -1,4 +1,4 @@
-.user-info__wrap {
+.profile__wrap {
     display: flex;
     align-items: baseline;
     margin-bottom: 16px;
@@ -6,7 +6,7 @@
   }
 
   @media screen and (max-width: 767px) {
-  .user-info__wrap {
+  .profile__wrap {
     display: flex;
     align-items: baseline;
     margin-bottom: 14px;
@@ -15,7 +15,7 @@
 }  
 
 @media screen and (max-width: 424px) {
-  .user-info__wrap {
+  .profile__wrap {
     width: 100%;
     justify-content: space-between;
   }  

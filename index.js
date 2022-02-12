@@ -1,4 +1,4 @@
-const userName = document.querySelector('.user-info__user-name');
+const userName = document.querySelector('.profile__user-name');
 const popupUserName = document.querySelector('.popup__input_type_name')
 
 function fillPopupUserName() {

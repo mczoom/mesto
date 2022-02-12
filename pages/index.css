@@ -7,11 +7,11 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__user/profile__user.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/user/__user-info/user__user-info.css);
-@import url(../blocks/user-info/__wrap/user-info__wrap.css);
-@import url(../blocks/user-info/__user-name/user-info__user-name.css);
+@import url(../blocks/profile/__user-info/profile__user-info.css);
+@import url(../blocks/profile/__wrap/profile__wrap.css);
+@import url(../blocks/profile/__user-name/profile__user-name.css);
 @import url(../blocks/user-info/__user-occupation/user-info__user-occupation.css);
-@import url(../blocks/user-info/__edit-button/user-info__edit-button.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__item/elements__item.css);
