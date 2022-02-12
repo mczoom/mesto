@@ -1,4 +1,4 @@
-.user-info__user-occupation {
+.profile__user-occupation {
     max-width: 442px;
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@
   }
 
   @media screen and (max-width: 767px) {
-    .user-info__user-occupation {
+    .profile__user-occupation {
       font-size: 14px;
       max-width: 250px;
     }  

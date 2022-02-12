@@ -8,7 +8,7 @@ function fillPopupUserName() {
 
 
 
-const userOccupation = document.querySelector('.user-info__user-occupation');
+const userOccupation = document.querySelector('.profile__user-occupation');
 const popupUserOccupation = document.querySelector('.popup__input_type_occupation');
 
 function fillPopupUserOccupation() {
