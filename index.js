@@ -44,7 +44,7 @@ popupCloseButton.addEventListener('click', closeProfilePopup);
 
 
 
-const popupForm = document.querySelector('.popup__popup-container');
+const popupForm = document.querySelector('.popup__container');
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
