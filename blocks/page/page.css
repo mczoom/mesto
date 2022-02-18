@@ -1,4 +1,4 @@
-.root {
+.page {
     font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -13,7 +13,7 @@
   }
 
   @media screen and (max-width: 424px) {
-    .root {
+    .page {
       padding-top: 28px;
       padding-bottom: 36px;
     }  
