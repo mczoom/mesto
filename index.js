@@ -60,7 +60,6 @@ addButton.addEventListener('click', addNewItem);
 
 
 
-
 const userName = document.querySelector('.profile__user-name');
 const popupUserName = document.querySelector('.popup__input_type_name')
 
