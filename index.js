@@ -1,10 +1,63 @@
+const initialItems = [
+    {
+      name: 'Черное море',
+      link: './images/grid-photos/ocean.jpg'
+    },
+    {
+      name: 'Ладожское озеро',
+      link: './images/grid-photos/morning-ocean.jpg'
+    },
+    {
+      name: 'Тихий океан',
+      link: './images/grid-photos/coast.jpg'
+    },
+    {
+      name: 'Черное море',
+      link: './images/grid-photos/ship.jpg'
+    },
+    {
+      name: 'Море Лаптевых',
+      link: './images/grid-photos/moonlight-ocean.jpg'
+    },
+    {
+      name: 'Рыболовные шхуны в Астрахани',
+      link: './images/grid-photos/boats.jpg'
+    }
+  ]; 
+
+
+const elements = document.querySelector('.elements');
+
+function addingInitialItems() {
+    initialItems.forEach(function(card) {
+        const itemTemplate = document.querySelector('#item').content;
+        const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
+        elementsItem.querySelector('.item__image').src = card.link;
+        elementsItem.querySelector('.item__title').textContent = card.name;
+        elements.append(elementsItem);
+    });
+}
+addingInitialItems();
+
+
+
+
+
+
+
+
+
+
+
+
+
 const userName = document.querySelector('.profile__user-name');
 const popupUserName = document.querySelector('.popup__input_type_name')
+
 
 function fillPopupUserName() {
     popupUserName.value = userName.textContent;
 }
-
 
 
 
@@ -14,7 +67,6 @@ const popupUserOccupation = document.querySelector('.popup__input_type_occupatio
 function fillPopupUserOccupation() {
     popupUserOccupation.value = userOccupation.textContent;
 }
-
 
 
 
