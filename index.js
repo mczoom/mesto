@@ -41,6 +41,16 @@ addingInitialItems();
 
 
 
+const addButton = document.querySelector('.profile__add-button');
+const popupAddPlace = document.querySelector('.popup-add-place');
+
+function addNewItem(evt) {
+    evt.preventDefault();
+    popupAddPlace.classList.add('popup-add-place_opened');
+}
+
+addButton.addEventListener('click', addNewItem);
+
 
 
 

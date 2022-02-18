@@ -1,0 +1,9 @@
+.popup-add-place__input_type_place {
+    margin: 54px auto 30px;
+  }  
+
+  @media screen and (max-width: 767px) {
+    .popup-add-place__input_type_place {
+      margin-top: 75px;
+    }  
+  }
