@@ -35,7 +35,7 @@ function addingInitialItems() {
         elementsItem.querySelector('.item__image').src = card.link;
         elementsItem.querySelector('.item__title').textContent = card.name;
         elements.append(elementsItem);
-    });
+    });    
 }
 addingInitialItems();
 
@@ -72,6 +72,8 @@ const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container'
 const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
 const newItemImage = popupAddItem.querySelector('.popup-add-item__input_type_link');
 
+
+
 function addNewItem(evt) {
   evt.preventDefault();
   const itemTemplate = document.querySelector('#item').content;
@@ -83,6 +85,20 @@ function addNewItem(evt) {
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
+
+
+
+//Добавить возможность лайкать карточки
+/*const likeButton = document.querySelector('.item__like-button');
+
+likeButton.addEventListener('click', function(evt) {
+  evt.target.classList.toggle('item__like-button_active');
+});*/
+
+
+ 
+
+
 
 
 
