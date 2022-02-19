@@ -30,8 +30,12 @@
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-@import url(../blocks/popup-add-place/popup-add-place.css);
-@import url(../blocks/popup-add-place/_opened/popup-add-place_opened.css);
-@import url(../blocks/popup-add-place/__input/popup-add-place__input.css);
-@import url(../blocks/popup-add-place/__input/_type/popup-add-place__input_type_place.css);
-@import url(../blocks/popup-add-place/__input/_type/popup-add-place__input_type_link.css);
+@import url(../blocks/popup-add-item/popup-add-item.css);
+@import url(../blocks/popup-add-item/_opened/popup-add-item_opened.css);
+@import url(../blocks/popup-add-item/__input/popup-add-item__input.css);
+@import url(../blocks/popup-add-item/__input/_type/popup-add-item__input_type_place.css);
+@import url(../blocks/popup-add-item/__input/_type/popup-add-item__input_type_link.css);
+@import url(../blocks/popup-add-item/__submit-button/popup-add-item__submit-button.css);
+@import url(../blocks/popup-add-item/__title/popup-add-item__title.css);
+@import url(../blocks/popup-add-item/__container/popup-add-item__container.css);
+@import url(../blocks/popup-add-item/__close-button/popup-add-item__close-button.css);

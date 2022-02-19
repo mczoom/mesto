@@ -1,4 +1,4 @@
-.popup-add-place__input {
+.popup-add-item__input {
     padding: 0;
     width: calc(100% - 72px);
     height: 27px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .popup-add-place__input {
+    .popup-add-item__input {
         width: calc(100% - 44px);
     }  
   }

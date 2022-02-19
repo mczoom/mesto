@@ -25,7 +25,7 @@ const initialItems = [
     }
   ]; 
 
-
+//Добавить на страницу 6 карточек по умолчанию
 const elements = document.querySelector('.elements');
 
 function addingInitialItems() {
@@ -41,15 +41,49 @@ addingInitialItems();
 
 
 
+//Отобразить попап добавления новой карточки
 const addButton = document.querySelector('.profile__add-button');
-const popupAddPlace = document.querySelector('.popup-add-place');
+const popupAddItem = document.querySelector('.popup-add-item');
 
-function addNewItem(evt) {
+function showNewItemPopup(evt) {
     evt.preventDefault();
-    popupAddPlace.classList.add('popup-add-place_opened');
+    popupAddItem.classList.add('popup-add-item_opened');
 }
 
-addButton.addEventListener('click', addNewItem);
+addButton.addEventListener('click', showNewItemPopup);
+
+
+
+//Закрыть попап добавления новой карточки
+const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
+
+function closeNewItemPopup(evt) {
+  evt.preventDefault();
+  popupAddItem.classList.remove('popup-add-item_opened');
+};
+
+addItemCloseButton.addEventListener('click', closeNewItemPopup);
+
+
+
+
+//Добавить новую карточку и автоматически закрыть попап
+const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container');
+const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
+const newItemImage = popupAddItem.querySelector('.popup-add-item__input_type_link');
+
+function addNewItem(evt) {
+  evt.preventDefault();
+  const itemTemplate = document.querySelector('#item').content;
+  const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
+  elementsItem.querySelector('.item__image').src = newItemImage.value;
+  elementsItem.querySelector('.item__title').textContent = newItemTitle.value;
+  elements.prepend(elementsItem);
+  closeNewItemPopup(evt);
+};
+
+popupAddItemForm.addEventListener('submit', addNewItem);
+
 
 
 
@@ -104,14 +138,14 @@ popupCloseButton.addEventListener('click', closeProfilePopup);
 
 
 
-
 const popupForm = document.querySelector('.popup__container');
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value; 
-    closeProfilePopup();   
+    closeProfilePopup(evt);
 }
 
 popupForm.addEventListener('submit', formSubmitHandler);
+
