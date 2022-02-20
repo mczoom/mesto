@@ -33,8 +33,10 @@ function addingInitialItems(items) {
     items.forEach(function(card) {        
         const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
         const deleteButton = elementsItem.querySelector('.item__delete-button');
+        const likeButton = elementsItem.querySelector('.item__like-button');
         elementsItem.querySelector('.item__image').src = card.link;
         elementsItem.querySelector('.item__title').textContent = card.name;
+        likeButton.addEventListener('click', switchLikeButton);
         deleteButton.addEventListener('click', deleteItem);
         elements.append(elementsItem);
     });    
@@ -78,6 +80,10 @@ function deleteItem(event) {
 };
 
 
+//Функция для лайков/анлайков карточек
+function switchLikeButton(event) {
+  event.target.classList.toggle('item__like-button_active');
+};
 
 
 
@@ -95,8 +101,10 @@ function addNewItem(evt) {
   evt.preventDefault();  
   const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
   const deleteButton = elementsItem.querySelector('.item__delete-button');
+  const likeButton = elementsItem.querySelector('.item__like-button');
   elementsItem.querySelector('.item__image').src = newItemImage.value;
   elementsItem.querySelector('.item__title').textContent = newItemTitle.value;
+  likeButton.addEventListener('click', switchLikeButton);
   deleteButton.addEventListener('click', deleteItem);
   elements.prepend(elementsItem);
   
@@ -107,12 +115,10 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 
 
-//Добавить возможность лайкать карточки
-/*const likeButton = document.querySelector('.item__like-button');
 
-likeButton.addEventListener('click', function(evt) {
-  evt.target.classList.toggle('item__like-button_active');
-});*/
+
+
+
 
 
 
