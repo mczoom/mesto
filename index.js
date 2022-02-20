@@ -26,18 +26,20 @@ const initialItems = [
   ]; 
 
 //Добавить на страницу 6 карточек по умолчанию
+const itemTemplate = document.querySelector('#item').content;
 const elements = document.querySelector('.elements');
 
-function addingInitialItems() {
-    initialItems.forEach(function(card) {
-        const itemTemplate = document.querySelector('#item').content;
+function addingInitialItems(items) {
+    items.forEach(function(card) {        
         const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
+        const deleteButton = elementsItem.querySelector('.item__delete-button');
         elementsItem.querySelector('.item__image').src = card.link;
         elementsItem.querySelector('.item__title').textContent = card.name;
+        deleteButton.addEventListener('click', deleteItem);
         elements.append(elementsItem);
     });    
 }
-addingInitialItems();
+addingInitialItems(initialItems);
 
 
 
@@ -67,6 +69,21 @@ addItemCloseButton.addEventListener('click', closeNewItemPopup);
 
 
 
+
+
+//Функция удаления карточки
+function deleteItem(event) {
+  const deleteCard = event.target.closest('.item');
+  deleteCard.remove();
+};
+
+
+
+
+
+
+
+
 //Добавить новую карточку и автоматически закрыть попап
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container');
 const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
@@ -75,12 +92,14 @@ const newItemImage = popupAddItem.querySelector('.popup-add-item__input_type_lin
 
 
 function addNewItem(evt) {
-  evt.preventDefault();
-  const itemTemplate = document.querySelector('#item').content;
+  evt.preventDefault();  
   const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
+  const deleteButton = elementsItem.querySelector('.item__delete-button');
   elementsItem.querySelector('.item__image').src = newItemImage.value;
   elementsItem.querySelector('.item__title').textContent = newItemTitle.value;
+  deleteButton.addEventListener('click', deleteItem);
   elements.prepend(elementsItem);
+  
   closeNewItemPopup(evt);
 };
 
@@ -94,6 +113,8 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 likeButton.addEventListener('click', function(evt) {
   evt.target.classList.toggle('item__like-button_active');
 });*/
+
+
 
 
  
