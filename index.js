@@ -29,19 +29,36 @@ const initialItems = [
 const itemTemplate = document.querySelector('#item').content;
 const elements = document.querySelector('.elements');
 
-function addingInitialItems(items) {
+function renderInitialItems(items) {
     items.forEach(function(card) {        
         const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
         const deleteButton = elementsItem.querySelector('.item__delete-button');
         const likeButton = elementsItem.querySelector('.item__like-button');
+        
+        
         elementsItem.querySelector('.item__image').src = card.link;
         elementsItem.querySelector('.item__title').textContent = card.name;
+        elementsItem.querySelector('.image-popup__image').src = card.link;
+        elementsItem.querySelector('.image-popup__title').textContent = card.name;
+
+
+        const imagePopup = elementsItem.querySelector('.image-popup');
+const itemImage = elementsItem.querySelector('.item__image');
+function showImagePopup(event) { 
+  event.preventDefault();
+  imagePopup.classList.add('image-popup_opened');  
+};
+itemImage.addEventListener('click', showImagePopup);
+
+
+
+
         likeButton.addEventListener('click', switchLikeButton);
         deleteButton.addEventListener('click', deleteItem);
         elements.append(elementsItem);
     });    
 }
-addingInitialItems(initialItems);
+renderInitialItems(initialItems);
 
 
 
@@ -67,8 +84,6 @@ function closeNewItemPopup(evt) {
 };
 
 addItemCloseButton.addEventListener('click', closeNewItemPopup);
-
-
 
 
 
@@ -112,6 +127,14 @@ function addNewItem(evt) {
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
+
+
+
+
+
+//Отобразить попап с увеличенной картинкой
+
+
 
 
 
