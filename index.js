@@ -30,6 +30,7 @@ const itemTemplate = document.querySelector('#item').content;
 const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
 const elements = document.querySelector('.elements');
 
+
 function renderInitialItems(items) {
     items.forEach(function(card) {        
         const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
@@ -52,8 +53,8 @@ function renderInitialItems(items) {
         itemImage.addEventListener('click', showImagePopup);
 
 
+        
         const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
-
         function closeImagePopup(event) {
           event.preventDefault();
           imagePopup.classList.remove('image-popup_opened');
@@ -74,8 +75,7 @@ renderInitialItems(initialItems);
 const addButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 
-function showNewItemPopup(evt) {
-    evt.preventDefault();
+function showNewItemPopup() {    
     popupAddItem.classList.add('popup-add-item_opened');
 }
 
@@ -118,6 +118,7 @@ const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container'
 const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
 const newItemImage = popupAddItem.querySelector('.popup-add-item__input_type_link');
 
+
 function addNewItem(evt) {
   evt.preventDefault();  
   const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
@@ -130,12 +131,25 @@ function addNewItem(evt) {
   elementsItem.querySelector('.image-popup__image').src = newItemImage.value;
   elementsItem.querySelector('.image-popup__title').textContent = newItemTitle.value;
   
-  function showImagePopup(event) { 
-    event.preventDefault();
+  function showImagePopup() {    
     imagePopup.classList.add('image-popup_opened');  
   };
-  itemImage.addEventListener('click', showImagePopup);
+  
+  function closeImagePopup(event) {
+    event.preventDefault();
+    imagePopup.classList.remove('image-popup_opened');
+  };
 
+  
+
+  
+  const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
+  function closeImagePopup() {    
+    imagePopup.classList.remove('image-popup_opened');
+  };
+  
+  imagePopupCloseButton.addEventListener('click', closeImagePopup);
+  itemImage.addEventListener('click', showImagePopup);
   likeButton.addEventListener('click', switchLikeButton);
   deleteButton.addEventListener('click', deleteItem);
   elements.prepend(elementsItem);
@@ -150,18 +164,19 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 
 //Отобразить попап с увеличенной картинкой
-function showImagePopup(event) { 
-  event.preventDefault();
-  imagePopup.classList.add('image-popup_opened');  
+function showImagePopup() {   
+  imagePopup.classList.add('popup_opened');  
 };
 
 
 
 
+//Закрыть попап добавленной карточки
 
 
-
-
+function closeImagePopup() {
+  imagePopup.classList.remove('image-popup_opened');
+};
 
 
 
@@ -234,7 +249,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value; 
-    closeProfilePopup(evt);
+    closeProfilePopup();
 }
 
 popupForm.addEventListener('submit', formSubmitHandler);
