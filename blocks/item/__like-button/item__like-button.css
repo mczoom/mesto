@@ -11,5 +11,5 @@
   .item__like-button:hover {
     opacity: .5;
     transform: scale(1.2);
-    
+    cursor: pointer;
   }  

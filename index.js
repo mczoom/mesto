@@ -27,6 +27,7 @@ const initialItems = [
 
 //Добавить на страницу 6 карточек по умолчанию
 const itemTemplate = document.querySelector('#item').content;
+const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
 const elements = document.querySelector('.elements');
 
 function renderInitialItems(items) {
@@ -43,18 +44,25 @@ function renderInitialItems(items) {
 
 
         const imagePopup = elementsItem.querySelector('.image-popup');
-const itemImage = elementsItem.querySelector('.item__image');
-function showImagePopup(event) { 
-  event.preventDefault();
-  imagePopup.classList.add('image-popup_opened');  
-};
-itemImage.addEventListener('click', showImagePopup);
+        const itemImage = elementsItem.querySelector('.item__image');
+        function showImagePopup(event) { 
+          event.preventDefault();
+          imagePopup.classList.add('image-popup_opened');  
+        };
+        itemImage.addEventListener('click', showImagePopup);
 
 
+        const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
+
+        function closeImagePopup(event) {
+          event.preventDefault();
+          imagePopup.classList.remove('image-popup_opened');
+        };
 
 
         likeButton.addEventListener('click', switchLikeButton);
         deleteButton.addEventListener('click', deleteItem);
+        imagePopupCloseButton.addEventListener('click', closeImagePopup);
         elements.append(elementsItem);
     });    
 }
@@ -105,12 +113,10 @@ function switchLikeButton(event) {
 
 
 
-//Добавить новую карточку и автоматически закрыть попап
+//Добавить новую карточку
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container');
 const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
 const newItemImage = popupAddItem.querySelector('.popup-add-item__input_type_link');
-
-
 
 function addNewItem(evt) {
   evt.preventDefault();  
@@ -119,6 +125,17 @@ function addNewItem(evt) {
   const likeButton = elementsItem.querySelector('.item__like-button');
   elementsItem.querySelector('.item__image').src = newItemImage.value;
   elementsItem.querySelector('.item__title').textContent = newItemTitle.value;
+  const imagePopup = elementsItem.querySelector('.image-popup');
+  const itemImage = elementsItem.querySelector('.item__image');
+  elementsItem.querySelector('.image-popup__image').src = newItemImage.value;
+  elementsItem.querySelector('.image-popup__title').textContent = newItemTitle.value;
+  
+  function showImagePopup(event) { 
+    event.preventDefault();
+    imagePopup.classList.add('image-popup_opened');  
+  };
+  itemImage.addEventListener('click', showImagePopup);
+
   likeButton.addEventListener('click', switchLikeButton);
   deleteButton.addEventListener('click', deleteItem);
   elements.prepend(elementsItem);
@@ -133,6 +150,13 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 
 //Отобразить попап с увеличенной картинкой
+function showImagePopup(event) { 
+  event.preventDefault();
+  imagePopup.classList.add('image-popup_opened');  
+};
+
+
+
 
 
 
