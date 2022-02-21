@@ -30,43 +30,36 @@ const itemTemplate = document.querySelector('#item').content;
 const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
 const elements = document.querySelector('.elements');
 
-
 function renderInitialItems(items) {
     items.forEach(function(card) {        
         const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
         const deleteButton = elementsItem.querySelector('.item__delete-button');
         const likeButton = elementsItem.querySelector('.item__like-button');
-        
+        const imagePopup = elementsItem.querySelector('.image-popup');
+        const itemImage = elementsItem.querySelector('.item__image');
+        const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
         
         elementsItem.querySelector('.item__image').src = card.link;
         elementsItem.querySelector('.item__title').textContent = card.name;
         elementsItem.querySelector('.image-popup__image').src = card.link;
         elementsItem.querySelector('.image-popup__title').textContent = card.name;
 
-
-        const imagePopup = elementsItem.querySelector('.image-popup');
-        const itemImage = elementsItem.querySelector('.item__image');
-        function showImagePopup(event) { 
-          event.preventDefault();
-          imagePopup.classList.add('image-popup_opened');  
-        };
-        itemImage.addEventListener('click', showImagePopup);
-
-
         
-        const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
-        function closeImagePopup(event) {
-          event.preventDefault();
+        function showImagePopup() {
+          imagePopup.classList.add('image-popup_opened');
+        };
+               
+        function closeImagePopup() {          
           imagePopup.classList.remove('image-popup_opened');
         };
 
-
+        itemImage.addEventListener('click', showImagePopup);
         likeButton.addEventListener('click', switchLikeButton);
         deleteButton.addEventListener('click', deleteItem);
         imagePopupCloseButton.addEventListener('click', closeImagePopup);
         elements.append(elementsItem);
     });    
-}
+};
 renderInitialItems(initialItems);
 
 
@@ -135,12 +128,7 @@ function addNewItem(evt) {
     imagePopup.classList.add('image-popup_opened');  
   };
   
-  function closeImagePopup(event) {
-    event.preventDefault();
-    imagePopup.classList.remove('image-popup_opened');
-  };
-
-  
+   
 
   
   const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
