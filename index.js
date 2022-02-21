@@ -46,11 +46,11 @@ function renderInitialItems(items) {
 
         
         function showImagePopup() {
-          imagePopup.classList.add('image-popup_opened');
+          imagePopup.classList.add('popup_opened');
         };
                
         function closeImagePopup() {          
-          imagePopup.classList.remove('image-popup_opened');
+          imagePopup.classList.remove('popup_opened');
         };
 
         itemImage.addEventListener('click', showImagePopup);
@@ -69,7 +69,7 @@ const addButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 
 function showNewItemPopup() {    
-    popupAddItem.classList.add('popup-add-item_opened');
+    popupAddItem.classList.add('popup_opened');
 }
 
 addButton.addEventListener('click', showNewItemPopup);
@@ -81,11 +81,10 @@ const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-bu
 
 function closeNewItemPopup(evt) {
   evt.preventDefault();
-  popupAddItem.classList.remove('popup-add-item_opened');
+  popupAddItem.classList.remove('popup_opened');
 };
 
 addItemCloseButton.addEventListener('click', closeNewItemPopup);
-
 
 
 
@@ -100,9 +99,6 @@ function deleteItem(event) {
 function switchLikeButton(event) {
   event.target.classList.toggle('item__like-button_active');
 };
-
-
-
 
 
 
@@ -126,11 +122,11 @@ function addNewItem(evt) {
   const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
 
   function showImagePopup() {
-    imagePopup.classList.add('image-popup_opened');
+    imagePopup.classList.add('popup_opened');
   };  
   
   function closeImagePopup() {    
-    imagePopup.classList.remove('image-popup_opened');
+    imagePopup.classList.remove('popup_opened');
   };
   
   imagePopupCloseButton.addEventListener('click', closeImagePopup);
@@ -154,12 +150,13 @@ function showImagePopup() {
 
 //Закрыть попап добавленной карточки
 function closeImagePopup() {
-  imagePopup.classList.remove('image-popup_opened');
+  imagePopup.classList.remove('popup_opened');
 };
 
 
 
 
+//ПР4
 
 const userName = document.querySelector('.profile__user-name');
 const popupUserName = document.querySelector('.popup__input_type_name')
@@ -177,7 +174,7 @@ function fillPopupUserOccupation() {
 
 //Отобразить попап редактирования профиля
 const editButton = document.querySelector('.profile__edit-button');
-const popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup-edit-profile');
 
 function editProfile() {    
     fillPopupUserName();
