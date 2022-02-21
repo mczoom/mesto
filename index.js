@@ -1,6 +1,6 @@
 const initialItems = [
     {
-      name: 'Черное море',
+      name: 'Красное море',
       link: './images/grid-photos/ocean.jpg'
     },
     {
@@ -12,15 +12,15 @@ const initialItems = [
       link: './images/grid-photos/coast.jpg'
     },
     {
-      name: 'Черное море',
+      name: 'Пролив Босфор',
       link: './images/grid-photos/ship.jpg'
     },
     {
-      name: 'Море Лаптевых',
+      name: 'Норвежское море',
       link: './images/grid-photos/moonlight-ocean.jpg'
     },
     {
-      name: 'Рыболовные шхуны в Астрахани',
+      name: 'Рыболовные шхуны в Англии',
       link: './images/grid-photos/boats.jpg'
     }
   ]; 
@@ -123,15 +123,12 @@ function addNewItem(evt) {
   const itemImage = elementsItem.querySelector('.item__image');
   elementsItem.querySelector('.image-popup__image').src = newItemImage.value;
   elementsItem.querySelector('.image-popup__title').textContent = newItemTitle.value;
-  
-  function showImagePopup() {    
-    imagePopup.classList.add('image-popup_opened');  
-  };
-  
-   
-
-  
   const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
+
+  function showImagePopup() {
+    imagePopup.classList.add('image-popup_opened');
+  };  
+  
   function closeImagePopup() {    
     imagePopup.classList.remove('image-popup_opened');
   };
@@ -149,19 +146,13 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 
 
-
-
 //Отобразить попап с увеличенной картинкой
-function showImagePopup() {   
-  imagePopup.classList.add('popup_opened');  
+function showImagePopup() {
+  imagePopup.classList.add('popup_opened');
 };
 
 
-
-
 //Закрыть попап добавленной карточки
-
-
 function closeImagePopup() {
   imagePopup.classList.remove('image-popup_opened');
 };
@@ -170,32 +161,12 @@ function closeImagePopup() {
 
 
 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
 const userName = document.querySelector('.profile__user-name');
 const popupUserName = document.querySelector('.popup__input_type_name')
 
-
 function fillPopupUserName() {
     popupUserName.value = userName.textContent;
-}
-
-
+};
 
 const userOccupation = document.querySelector('.profile__user-occupation');
 const popupUserOccupation = document.querySelector('.popup__input_type_occupation');
@@ -204,13 +175,11 @@ function fillPopupUserOccupation() {
     popupUserOccupation.value = userOccupation.textContent;
 }
 
-
-
+//Отобразить попап редактирования профиля
 const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 
-function editProfile(evt) {
-    evt.preventDefault();
+function editProfile() {    
     fillPopupUserName();
     fillPopupUserOccupation();
     popup.classList.add('popup_opened');
@@ -230,7 +199,7 @@ function closeProfilePopup() {
 popupCloseButton.addEventListener('click', closeProfilePopup);
 
 
-
+//Редактировать профиль
 const popupForm = document.querySelector('.popup__container');
 
 function formSubmitHandler (evt) {
@@ -238,7 +207,6 @@ function formSubmitHandler (evt) {
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value; 
     closeProfilePopup();
-}
+};
 
 popupForm.addEventListener('submit', formSubmitHandler);
-
