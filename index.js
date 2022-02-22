@@ -112,8 +112,8 @@ addItemCloseButton.addEventListener('click', closeNewItemPopup);
 
 //Создать новую карточку
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container');
-const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
-const newItemImage = popupAddItem.querySelector('.popup-add-item__input_type_link');
+const newItemTitle = popupAddItem.querySelector('.popup__input_type_place');
+const newItemImage = popupAddItem.querySelector('.popup__input_type_link');
 
 function renderNewItem() {
   const itemTemplate = document.querySelector('#item').content;
@@ -140,7 +140,6 @@ function addNewItem(evt) {
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
-
 
 
 
