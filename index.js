@@ -29,8 +29,82 @@ const initialItems = [
 const itemTemplate = document.querySelector('#item').content;
 const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
 const elements = document.querySelector('.elements');
+const likeButton = elementsItem.querySelector('.item__like-button');
+const imagePopup = elementsItem.querySelector('.image-popup');
+const itemImage = elementsItem.querySelector('.item__image');
+const imagePopupCloseButton = elementsItem.querySelector('.image-popup__close-button');
 
-function renderInitialItems(items) {
+//Удалить карточку
+function deleteItem(event) {
+  const deleteCard = event.target.closest('.item');
+  deleteCard.remove();
+};
+
+//Лайкнуть/анлайкнуть карточку
+function switchLikeButton(event) {
+  event.target.classList.toggle('item__like-button_active');
+};
+
+//Отобразить попап с увеличенной картинкой
+function showImagePopup(event) {
+  event.target.nextElementSibling.classList.add('popup_opened');
+};
+
+
+//Закрыть попап добавленной карточки
+function closeImagePopup(event) {
+  event.target.closest('.image-popup').classList.remove('popup_opened');
+  
+};
+
+function setEventListeners(item) {
+  item.querySelector('.item__image').addEventListener('click', showImagePopup);
+  item.querySelector('.item__like-button').addEventListener('click', switchLikeButton);
+  item.querySelector('.item__delete-button').addEventListener('click', deleteItem);
+  item.querySelector('.image-popup__close-button').addEventListener('click', closeImagePopup);
+};
+
+
+function renderItem (card) {
+  const itemTemplate = document.querySelector('#item').content;
+  const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
+  
+  elementsItem.querySelector('.item__image').src = card.link;
+  elementsItem.querySelector('.item__title').textContent = card.name;
+  elementsItem.querySelector('.image-popup__image').src = card.link;
+  elementsItem.querySelector('.image-popup__title').textContent = card.name;
+
+    
+  setEventListeners(elementsItem);
+  
+
+  elements.append(elementsItem);
+};
+
+
+
+function renderItems (items) {
+  items.forEach(renderItem);
+  
+};
+
+
+
+
+
+renderItems(initialItems);
+
+
+
+
+
+
+
+
+
+
+
+/*function renderInitialItems(items) {
     items.forEach(function(card) {        
         const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
         const deleteButton = elementsItem.querySelector('.item__delete-button');
@@ -60,7 +134,7 @@ function renderInitialItems(items) {
         elements.append(elementsItem);
     });    
 };
-renderInitialItems(initialItems);
+renderInitialItems(initialItems);*/
 
 
 
@@ -88,17 +162,9 @@ addItemCloseButton.addEventListener('click', closeNewItemPopup);
 
 
 
-//Функция удаления карточки
-function deleteItem(event) {
-  const deleteCard = event.target.closest('.item');
-  deleteCard.remove();
-};
 
 
-//Функция для лайков/анлайков карточек
-function switchLikeButton(event) {
-  event.target.classList.toggle('item__like-button_active');
-};
+
 
 
 
@@ -142,16 +208,7 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 
 
-//Отобразить попап с увеличенной картинкой
-function showImagePopup() {
-  imagePopup.classList.add('popup_opened');
-};
 
-
-//Закрыть попап добавленной карточки
-function closeImagePopup() {
-  imagePopup.classList.remove('popup_opened');
-};
 
 
 
