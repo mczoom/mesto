@@ -110,9 +110,6 @@ addItemCloseButton.addEventListener('click', closeNewItemPopup);
 
 
 
-
-
-
 //Создать новую карточку
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container');
 const newItemTitle = popupAddItem.querySelector('.popup-add-item__input_type_place');
@@ -134,8 +131,7 @@ function renderNewItem() {
 
 
 
-
-//Добавить новую карточку
+//Добавить новую карточку на страницу
 function addNewItem(evt) {
   evt.preventDefault();
 
@@ -144,9 +140,6 @@ function addNewItem(evt) {
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
-
-
-
 
 
 
