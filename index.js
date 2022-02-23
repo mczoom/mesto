@@ -25,7 +25,7 @@ const initialItems = [
     }
   ]; 
 
-//Добавить на страницу 6 карточек по умолчанию
+
 const itemTemplate = document.querySelector('#item').content;
 const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
 const elements = document.querySelector('.elements');
@@ -37,28 +37,20 @@ function deleteItem(event) {
   deleteCard.remove();
 };
 
+
 //Лайкнуть/анлайкнуть карточку
 function switchLikeButton(event) {
   event.target.classList.toggle('item__like-button_active');
 };
 
-//Отобразить попап с увеличенной картинкой
-function showImagePopup(event) {
-  event.target.nextElementSibling.classList.add('popup_opened');
-};
-
-//Закрыть попап добавленной карточки
-function closeImagePopup(event) {
-  event.target.closest('.image-popup').classList.remove('popup_opened');  
-};
 
 //Навесить обработчики
 function setEventListeners(item) {
   item.querySelector('.item__image').addEventListener('click', showImagePopup);
   item.querySelector('.item__like-button').addEventListener('click', switchLikeButton);
-  item.querySelector('.item__delete-button').addEventListener('click', deleteItem);
-  item.querySelector('.image-popup__close-button').addEventListener('click', closeImagePopup);
+  item.querySelector('.item__delete-button').addEventListener('click', deleteItem);  
 };
+
 
 //Создать карточку
 function renderItem(card) {
@@ -67,9 +59,7 @@ function renderItem(card) {
   
   elementsItem.querySelector('.item__image').src = card.link;
   elementsItem.querySelector('.item__title').textContent = card.name;
-  elementsItem.querySelector('.image-popup__image').src = card.link;
-  elementsItem.querySelector('.image-popup__title').textContent = card.name;
-    
+      
   setEventListeners(elementsItem);  
 
   elements.append(elementsItem);
@@ -83,6 +73,25 @@ function renderItems (items) {
 
 renderItems(initialItems);
 
+
+
+//Отобразить попап с увеличенной картинкой
+const imagePopup = document.querySelector('.image-popup');
+
+
+function showImagePopup(event) {
+  imagePopup.classList.add('popup_opened');
+  document.querySelector('.image-popup__image').src = event.target.src;
+  document.querySelector('.image-popup__title').textContent = event.target.nextElementSibling.textContent;
+};
+
+
+//Закрыть попап добавленной карточки
+function closeImagePopup() {
+  imagePopup.classList.remove('popup_opened');
+};
+
+document.querySelector('.image-popup__close-button').addEventListener('click', closeImagePopup);
 
 
 
@@ -101,8 +110,7 @@ addButton.addEventListener('click', showNewItemPopup);
 //Закрыть попап добавления новой карточки
 const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
 
-function closeNewItemPopup() {
-  
+function closeNewItemPopup() {  
   popupAddItem.classList.remove('popup_opened');
 };
 
@@ -121,8 +129,7 @@ function renderNewItem() {
   
   elementsItem.querySelector('.item__image').src = newItemImage.value;
   elementsItem.querySelector('.item__title').textContent = newItemTitle.value;
-  elementsItem.querySelector('.image-popup__image').src = newItemImage.value;
-  elementsItem.querySelector('.image-popup__title').textContent = newItemTitle.value;
+  
     
   setEventListeners(elementsItem);
 

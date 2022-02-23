@@ -31,14 +31,7 @@
         <template id="item">
           <div class="item elements__item">
             <button class="item__delete-button"></button>                          
-              <img class="item__image" src="#" alt="">
-              <div class="popup item__image-popup image-popup">
-                <figure class="image-popup__container">
-                  <button class="image-popup__close-button"></button>
-                  <img class="image-popup__image" src="#" alt="">
-                  <figcaption class="image-popup__title"></figcaption>
-                </figure>
-              </div>             
+              <img class="item__image" src="#" alt="">              
             <div class="item__info">
               <p class="item__title"></p>  
               <button class="item__like-button"></button>
@@ -62,6 +55,13 @@
           <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="image-link" type="url">
           <button class="popup-add-item__submit-button" type="submit">Создать</button>
         </form>
+      </div>
+      <div class="popup item__image-popup image-popup">
+        <figure class="image-popup__container">
+          <button class="image-popup__close-button"></button>
+          <img class="image-popup__image" src="#" alt="">
+          <figcaption class="image-popup__title"></figcaption>
+        </figure>
       </div>
     </main>
     <footer class="footer">
