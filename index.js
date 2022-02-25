@@ -43,7 +43,7 @@ const newItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
 
 const userName = document.querySelector('.profile__user-name');
 const popupEditProfile = document.querySelector('.popup-edit-profile');
-const popupEditForm = popupEditProfile.querySelector('.popup__container');
+const popupEditProfileForm = popupEditProfile.querySelector('.popup__container');
 
 const popupUserName = popupEditProfile.querySelector('.popup__input_type_name')
 const userOccupation = document.querySelector('.profile__user-occupation');
@@ -75,23 +75,38 @@ function setEventListeners(item) {
 
 
 
+
+
+
+
+
+
+
+
+
 //Создать карточку
-function renderItem(card) {
+function createItem(image, title) {
   const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
   
-  elementsItem.querySelector('.item__image').src = card.link;
-  elementsItem.querySelector('.item__image').alt = card.name;
-  elementsItem.querySelector('.item__title').textContent = card.name;
-      
+  const itemImage = elementsItem.querySelector('.item__image');
+  const itemTitle = elementsItem.querySelector('.item__title');
+ 
+  itemImage.src = image;
+  itemImage.alt = title;
+  itemTitle.textContent = title;
+        
   setEventListeners(elementsItem);  
-
-  elements.append(elementsItem);
+  return elementsItem;
 };
 
 
-//Создать несколько карточек из массива
-function renderItems (items) {
-  items.forEach(renderItem);  
+
+//Добавить карточки из массива
+function renderItems (array) {
+  array.forEach((item) => {
+
+    elements.append(createItem(item.link, item.name));
+  });  
 };
 
 renderItems(initialItems);
@@ -191,9 +206,6 @@ editButton.addEventListener('click', editProfile);
 
 
 
-
-
-
 function closeProfilePopup() {
   popupEditProfile.classList.remove('popup_opened');
 }
@@ -202,13 +214,11 @@ popupCloseButton.addEventListener('click', closeProfilePopup);
 
 
 //Редактировать профиль
-
-
-function formSubmitHandler (evt) {
+function SubmitProfileEditFormHandler (evt) {
     evt.preventDefault();
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value; 
     closeProfilePopup();
 };
 
-popupEditForm.addEventListener('submit', formSubmitHandler);
+popupEditProfileForm.addEventListener('submit', SubmitProfileEditFormHandler);
