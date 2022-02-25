@@ -104,7 +104,6 @@ function createItem(image, title) {
 //Добавить карточки из массива
 function renderItems (array) {
   array.forEach((item) => {
-
     elements.append(createItem(item.link, item.name));
   });  
 };
@@ -148,24 +147,9 @@ function closeNewItemPopup() {
 addItemCloseButton.addEventListener('click', closeNewItemPopup);
 
 
-function clearNewItemPopupInput() {
-  newItemImage.value = '';
-  newItemTitle.value = '';
-};
-
-
-//Создать новую карточку
-function renderNewItem() {
-  const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
-  
-  elementsItem.querySelector('.item__image').src = newItemImage.value;
-  elementsItem.querySelector('.item__image').alt = newItemTitle.value;
-  elementsItem.querySelector('.item__title').textContent = newItemTitle.value;
-    
-  setEventListeners(elementsItem);
-  clearNewItemPopupInput();
-
-  elements.prepend(elementsItem);
+function clearPopupInput(image, title) {
+  image.value = '';
+  title.value = '';
 };
 
 
@@ -173,8 +157,9 @@ function renderNewItem() {
 //Добавить новую карточку на страницу
 function addNewItem(evt) {
   evt.preventDefault();
-
-  renderNewItem();
+    
+  elements.prepend(createItem(newItemImage.value, newItemTitle.value));
+  clearPopupInput(newItemImage, newItemTitle);
   closeNewItemPopup();
 };
 
