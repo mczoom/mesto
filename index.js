@@ -32,12 +32,13 @@ const elements = document.querySelector('.elements');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupPicture = imagePopup.querySelector('.image-popup__image');
 const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
+const imagePopupCloseButton = document.querySelector('.image-popup__close-button')
 
 const addButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
+const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
 
-const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__container');
 const newItemTitle = popupAddItemForm.querySelector('.popup__input_type_place');
 const newItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
 
@@ -115,25 +116,39 @@ function showImagePopup(event) {
 };
 
 
+//Отобразить попап
+function openPopup(popup) {    
+  popup.classList.add('popup_opened');
+};
+
+
+function openAddItemPopup() {
+  openPopup(popupAddItem);
+};
+
+addButton.addEventListener('click', openAddItemPopup);
+
+
+
 //Закрыть попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 };
 
-document.querySelector('.image-popup__close-button').addEventListener('click', closePopup(imagePopup));
-addItemCloseButton.addEventListener('click', closePopup(popupAddItem));
+function closeImagePopup() {
+  closePopup(imagePopup);
+};
 
-
-//Отобразить попап
-function openPopup(popup) {    
-    popup.classList.add('popup_opened');
-}
-
-addButton.addEventListener('click', openPopup(popupAddItem));
+imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
 
-function clearPopupInput(image, title) {
+
+
+
+
+
+function resetPopupInput(image, title) {
   image.value = '';
   title.value = '';
 };
@@ -143,13 +158,22 @@ function clearPopupInput(image, title) {
 //Добавить новую карточку на страницу
 function addNewItem(evt) {
   evt.preventDefault();
-    
+      
   elements.prepend(createItem(newItemImage.value, newItemTitle.value));
-  clearPopupInput(newItemImage, newItemTitle);
-  closePopup(popupAddItem);
+  resetPopupInput(newItemImage, newItemTitle);
+  closeAddItemPopup();
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
+
+
+
+function closeAddItemPopup() {  
+  closePopup(popupAddItem);
+};
+
+addItemCloseButton.addEventListener('click', closeAddItemPopup);
+
 
 
 
@@ -177,11 +201,11 @@ popupCloseButton.addEventListener('click', closePopup(popupEditProfile));
 
 
 //Редактировать профиль
-function SubmitProfileEditFormHandler (evt) {
+function SubmitProfileEditForm (evt) {
     evt.preventDefault();
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value; 
     closePopup(popupEditProfile);
 };
 
-popupEditProfileForm.addEventListener('submit', SubmitProfileEditFormHandler);
+popupEditProfileForm.addEventListener('submit', SubmitProfileEditForm);
