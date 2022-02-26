@@ -78,12 +78,6 @@ function setEventListeners(item) {
 
 
 
-
-
-
-
-
-
 //Создать карточку
 function createItem(image, title) {
   const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
@@ -114,37 +108,29 @@ renderItems(initialItems);
 
 //Отобразить попап с увеличенной картинкой
 function showImagePopup(event) {
-  imagePopup.classList.add('popup_opened');
+  openPopup(imagePopup)
   imagePopupPicture.src = event.target.src;
   imagePopupPicture.alt = event.target.nextElementSibling.textContent;
   imagePopupTitle.textContent = event.target.nextElementSibling.textContent;
 };
 
 
-//Закрыть попап добавленной карточки
-function closeImagePopup() {
-  imagePopup.classList.remove('popup_opened');
+//Закрыть попап
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 };
 
-document.querySelector('.image-popup__close-button').addEventListener('click', closeImagePopup);
+document.querySelector('.image-popup__close-button').addEventListener('click', closePopup(imagePopup));
+addItemCloseButton.addEventListener('click', closePopup(popupAddItem));
 
 
-
-//Отобразить попап добавления новой карточки
-function showNewItemPopup() {    
-    popupAddItem.classList.add('popup_opened');
+//Отобразить попап
+function openPopup(popup) {    
+    popup.classList.add('popup_opened');
 }
 
-addButton.addEventListener('click', showNewItemPopup);
+addButton.addEventListener('click', openPopup(popupAddItem));
 
-
-
-//Закрыть попап добавления новой карточки
-function closeNewItemPopup() {  
-  popupAddItem.classList.remove('popup_opened');
-};
-
-addItemCloseButton.addEventListener('click', closeNewItemPopup);
 
 
 function clearPopupInput(image, title) {
@@ -160,7 +146,7 @@ function addNewItem(evt) {
     
   elements.prepend(createItem(newItemImage.value, newItemTitle.value));
   clearPopupInput(newItemImage, newItemTitle);
-  closeNewItemPopup();
+  closePopup(popupAddItem);
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
@@ -170,32 +156,24 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 //ПР4
 
-function fillPopupUserName() {
+function fillProfilePopupInput() {
     popupUserName.value = userName.textContent;
-};
-
-
-function fillPopupUserOccupation() {
     popupUserOccupation.value = userOccupation.textContent;
-}
+};
 
 
 //Отобразить попап редактирования профиля
 function editProfile() {    
-    fillPopupUserName();
-    fillPopupUserOccupation();
-    popupEditProfile.classList.add('popup_opened');
-}
+  fillProfilePopupInput()
+  openPopup(popupEditProfile)    
+};
 
 editButton.addEventListener('click', editProfile);
 
 
 
-function closeProfilePopup() {
-  popupEditProfile.classList.remove('popup_opened');
-}
 
-popupCloseButton.addEventListener('click', closeProfilePopup);
+popupCloseButton.addEventListener('click', closePopup(popupEditProfile));
 
 
 //Редактировать профиль
@@ -203,7 +181,7 @@ function SubmitProfileEditFormHandler (evt) {
     evt.preventDefault();
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value; 
-    closeProfilePopup();
+    closePopup(popupEditProfile);
 };
 
 popupEditProfileForm.addEventListener('submit', SubmitProfileEditFormHandler);
