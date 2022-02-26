@@ -27,7 +27,7 @@ const initialItems = [
 
 
 const itemTemplate = document.querySelector('#item').content;
-const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
+
 const elements = document.querySelector('.elements');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupPicture = imagePopup.querySelector('.image-popup__image');
@@ -38,15 +38,14 @@ const addButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
-
 const newItemTitle = popupAddItemForm.querySelector('.popup__input_type_place');
 const newItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
 
 const userName = document.querySelector('.profile__user-name');
 const popupEditProfile = document.querySelector('.popup-edit-profile');
 const popupEditProfileForm = popupEditProfile.querySelector('.popup__container');
+const popupUserName = popupEditProfile.querySelector('.popup__input_type_name');
 
-const popupUserName = popupEditProfile.querySelector('.popup__input_type_name')
 const userOccupation = document.querySelector('.profile__user-occupation');
 const popupUserOccupation = popupEditProfile.querySelector('.popup__input_type_occupation');
 const editButton = document.querySelector('.profile__edit-button');
@@ -75,14 +74,9 @@ function setEventListeners(item) {
 };
 
 
-
-
-
-
 //Создать карточку
 function createItem(image, title) {
-  const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);
-  
+  const elementsItem = itemTemplate.querySelector('.item').cloneNode(true);  
   const itemImage = elementsItem.querySelector('.item__image');
   const itemTitle = elementsItem.querySelector('.item__title');
  
@@ -95,7 +89,6 @@ function createItem(image, title) {
 };
 
 
-
 //Добавить карточки из массива
 function renderItems (array) {
   array.forEach((item) => {
@@ -104,7 +97,6 @@ function renderItems (array) {
 };
 
 renderItems(initialItems);
-
 
 
 //Отобразить попап с увеличенной картинкой
@@ -143,16 +135,10 @@ imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
 
-
-
-
-
-
 function resetPopupInput(image, title) {
   image.value = '';
   title.value = '';
 };
-
 
 
 //Добавить новую карточку на страницу
@@ -177,7 +163,6 @@ addItemCloseButton.addEventListener('click', closeAddItemPopup);
 
 
 
-
 //ПР4
 
 function fillProfilePopupInput() {
@@ -193,9 +178,6 @@ function editProfile() {
 };
 
 editButton.addEventListener('click', editProfile);
-
-
-
 
 popupCloseButton.addEventListener('click', closePopup(popupEditProfile));
 
