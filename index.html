@@ -39,7 +39,7 @@
           </div>
         </template>
       <div class="popup popup-edit-profile">
-        <form class="popup__container" name="profile-form">
+        <form class="popup__container" name="profile-form" method="post" novalidate>
           <button class="popup__close-button"></button>
           <p class="popup__title">Редактировать профиль</p>
           <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="username" type="text">
@@ -50,7 +50,7 @@
       <div class="popup popup-add-item">        
         <div class="popup-add-item__container">
           <button class="popup-add-item__close-button"></button>
-          <form class="popup-add-item__form" name="add-new-item">          
+          <form class="popup-add-item__form" name="add-new-item" method="post" novalidate>          
             <p class="popup-add-item__title">Новое место</p>
             <input class="popup__input popup__input_type_place" placeholder="Название" name="item-name" type="text">
             <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="image-link" type="url">
