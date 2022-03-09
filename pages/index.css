@@ -49,6 +49,21 @@
 @import url(../blocks/image-popup/_opened/image-popup_opened.css);
 @import url(../blocks/image-popup/__close-button/image-popup__close-button.css);
 
-.wrap {
-    position: relative;
+
+
+
+.popup__input-error {
+    visibility: hidden;
+    width: calc(100% - 72px);
+    margin: 0 auto;
+    padding: 0;
+    font-size: 12px;
+    line-height: 121%;
+    font-weight: 400;
+    color: #F00;
 }
+
+.popup__input-error_active {
+    visibility: visible;
+}
+

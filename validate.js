@@ -3,6 +3,8 @@
 
 enableValidation(elementsObject);*/
 
+function enableValidation() {
+
 const formsList = document.querySelectorAll('.form');
 
 formsList.forEach((formElement) => {
@@ -12,7 +14,8 @@ formsList.forEach((formElement) => {
 
     setEventListeners (formElement);
 });
-
+};
+enableValidation();
 
 
 
@@ -21,14 +24,34 @@ formsList.forEach((formElement) => {
 function setEventListeners (formElement) {
   const inputsList = formElement.querySelectorAll('.popup__input');
   inputsList.forEach((inputElement) => {
-    inputElement.addEventListener('input', (evt) => {
-        console.log(evt.target.name, evt.target.value);
+    inputElement.addEventListener('input', () => {
+        
+
+        checkInputValidity(formElement, inputElement);
     })
 });
 };
 
-function isValid(inputElement) {
-    if(inputElement.validity.valid) {
-        
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);    
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('popup__input-error_active');
+};
+
+const hideInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.classList.remove('popup__input-error_active');
+    errorElement.textContent = '';
+    
+};
+
+
+function checkInputValidity(formElement, inputElement) {
+    const errorMessage = inputElement.validationMessage;
+    if(!inputElement.validity.valid) {
+        showInputError (formElement, inputElement, errorMessage); 
+    } else {
+        hideInputError (formElement, inputElement);
     }
-}
+};
