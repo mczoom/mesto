@@ -23,7 +23,7 @@ enableValidation();
 
 function setEventListeners (formElement) {
   const inputsList = formElement.querySelectorAll('.popup__input');
-  const submitButton = formElement.querySelector('.submit-button')
+  const submitButton = formElement.querySelector('.submit-button');
   inputsList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {        
 
@@ -39,13 +39,14 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);    
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__input-error_active');
+    inputElement.classList.add('popup__input_invalid');
 };
 
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.classList.remove('popup__input-error_active');
     errorElement.textContent = '';
-    
+    inputElement.classList.remove('popup__input_invalid');
 };
 
 
@@ -68,5 +69,5 @@ function toggleSubmitButtonState (inputsList, submitButton) {
     } else {
         submitButton.classList.remove('submit-button_disabled');
         submitButton.removeAttribute('disabled');
-    }
-}
+    };
+};
