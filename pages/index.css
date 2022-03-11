@@ -48,11 +48,12 @@
 @import url(../blocks/image-popup/__title/image-popup__title.css);
 @import url(../blocks/image-popup/_opened/image-popup_opened.css);
 @import url(../blocks/image-popup/__close-button/image-popup__close-button.css);
+@import url(../blocks/popup/__section/popup__section.css);
 
 
 
 
-.username-input-error {
+/*.username-input-error {
     position: absolute;
     top: 45%;
     left: 36px;
@@ -78,8 +79,22 @@
     line-height: 121%;
     font-weight: 400;
     color: #F00;
-}
+}*/
 
+.popup__input-error {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 121%;
+    font-weight: 400;
+    color: #F00;
+    
+}
 
 .popup__input-error_active {
     opacity: 1;
