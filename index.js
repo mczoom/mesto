@@ -150,14 +150,14 @@ function closeEditProfilePopup() {
 
 
 //Закрывать попап по нажатию на Esc
-function closePopupByEsc() {
+function closePopupByEsc(popup) {
   document.addEventListener('keydown', function(evt) {
     if(evt.key === 'Escape') {
-      closeEditProfilePopup();
+      closePopup(popup);
     }
   });
 };
-closePopupByEsc();
+
 
 
 function resetPopupInput(image, title) {
@@ -199,13 +199,15 @@ function closePopupByOverlayClick(popupOverlay, popupContent) {
   });
 };
 
-function setPopupsEventListenersForOverlayClose() {
+function setPopupsEventListenersForOverlayAndEscClose() {
   closePopupByOverlayClick(popupEditProfile, popupEditProfileForm);
   closePopupByOverlayClick(popupAddItem, popupAddItemContainer);
   closePopupByOverlayClick(imagePopup, imagePopupContainer);
+  closePopupByEsc(popupEditProfile);
+  closePopupByEsc(popupAddItem);
+  closePopupByEsc(imagePopup);
 }
-
-setPopupsEventListenersForOverlayClose();
+setPopupsEventListenersForOverlayAndEscClose();
 
 
 //ПР4
