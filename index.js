@@ -67,7 +67,7 @@ function switchLikeButton(event) {
 
 
 //Навесить обработчики
-function setEventListeners(item) {
+function setCardEventListeners(item) {
   item.querySelector('.item__image').addEventListener('click', showImagePopup);
   item.querySelector('.item__like-button').addEventListener('click', switchLikeButton);
   item.querySelector('.item__delete-button').addEventListener('click', deleteItem);  
@@ -84,7 +84,7 @@ function createItem(image, title) {
   itemImage.alt = title;
   itemTitle.textContent = title;
         
-  setEventListeners(elementsItem);  
+  setCardEventListeners(elementsItem);  
   return elementsItem;
 };
 
@@ -134,6 +134,20 @@ function closeImagePopup() {
 imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
+function closeEditItemPopup() {
+  closePopup(popupEditProfile);
+};
+
+
+//Закрывать попап по нажатию на оверлэй
+function closePopupByOverlayClick() {
+  popupEditProfile.addEventListener('click', closeEditItemPopup);
+  popupEditProfileForm.addEventListener('click', function (evt) {
+    evt.stopPropagation();
+  });
+};
+
+
 
 function resetPopupInput(image, title) {
   image.value = '';
@@ -173,8 +187,9 @@ function fillProfilePopupInput() {
 
 //Отобразить попап редактирования профиля
 function editProfile() {    
-  fillProfilePopupInput()
-  openPopup(popupEditProfile)    
+  fillProfilePopupInput();
+  openPopup(popupEditProfile);
+  closePopupByOverlayClick();    
 };
 
 editButton.addEventListener('click', editProfile);
@@ -186,7 +201,7 @@ popupCloseButton.addEventListener('click', closePopup(popupEditProfile));
 function SubmitProfileEditForm (evt) {
     evt.preventDefault();
     userName.textContent = popupUserName.value;
-    userOccupation.textContent = popupUserOccupation.value; 
+    userOccupation.textContent = popupUserOccupation.value;
     closePopup(popupEditProfile);
 };
 
