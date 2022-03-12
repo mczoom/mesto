@@ -30,6 +30,7 @@ const itemTemplate = document.querySelector('#item').content;
 
 const elements = document.querySelector('.elements');
 const imagePopup = document.querySelector('.image-popup');
+const imagePopupContainer = imagePopup.querySelector('.image-popup__container');
 const imagePopupPicture = imagePopup.querySelector('.image-popup__image');
 const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
 const imagePopupCloseButton = document.querySelector('.image-popup__close-button')
@@ -99,12 +100,16 @@ function renderItems (array) {
 renderItems(initialItems);
 
 
+
+
 //Отобразить попап с увеличенной картинкой
 function showImagePopup(event) {
   openPopup(imagePopup)
   imagePopupPicture.src = event.target.src;
   imagePopupPicture.alt = event.target.nextElementSibling.textContent;
   imagePopupTitle.textContent = event.target.nextElementSibling.textContent;
+  imagePopup.addEventListener('click', closeImagePopup);
+  closePopupByOverlayClick(imagePopup, imagePopupContainer);
 };
 
 
@@ -134,19 +139,29 @@ function closeImagePopup() {
 imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
-function closeEditItemPopup() {
+function closeEditProfilePopup() {
   closePopup(popupEditProfile);
 };
 
 
 //Закрывать попап по нажатию на оверлэй
-function closePopupByOverlayClick() {
-  popupEditProfile.addEventListener('click', closeEditItemPopup);
-  popupEditProfileForm.addEventListener('click', function (evt) {
+function closePopupByOverlayClick(popupOverlay, popupContent) {
+  popupOverlay.addEventListener('click', closeEditProfilePopup);
+  popupContent.addEventListener('click', function (evt) {
     evt.stopPropagation();
   });
 };
 
+
+//Закрывать попап по нажатию на Esc
+function closePopupByEsc() {
+  document.addEventListener('keydown', function(evt) {
+    if(evt.key === 'Escape') {
+      closeEditProfilePopup();
+    }
+  });
+};
+closePopupByEsc();
 
 
 function resetPopupInput(image, title) {
@@ -189,7 +204,7 @@ function fillProfilePopupInput() {
 function editProfile() {    
   fillProfilePopupInput();
   openPopup(popupEditProfile);
-  closePopupByOverlayClick();    
+  closePopupByOverlayClick(popupEditProfile, popupEditProfileForm);    
 };
 
 editButton.addEventListener('click', editProfile);
