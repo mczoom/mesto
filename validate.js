@@ -35,15 +35,21 @@ function setEventListeners (formElement) {
 };
 
 
+function getErrorElement(formElement, inputElement) {
+    return formElement.querySelector(`.${inputElement.id}-error`);
+};
+
+
 const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);    
+    const errorElement = getErrorElement(formElement, inputElement);    
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__input-error_active');
     inputElement.classList.add('popup__input_invalid');
 };
 
+
 const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = getErrorElement(formElement, inputElement);
     errorElement.classList.remove('popup__input-error_active');
     errorElement.textContent = '';
     inputElement.classList.remove('popup__input_invalid');
