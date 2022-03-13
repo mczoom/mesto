@@ -1,7 +1,11 @@
-/*const elementsObject {};
-
-
-enableValidation(elementsObject);*/
+const validationElements = {
+  formSelector: '.form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.submit-button',
+  inactiveButtonClass: 'submit-button_disabled',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error_active'
+}
 
 function enableValidation() {
 
