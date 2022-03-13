@@ -5,29 +5,31 @@ const validationElements = {
   inactiveButtonClass: 'submit-button_disabled',
   inputErrorClass: 'popup__input-error',
   errorClass: 'popup__input-error_active'
-}
+};
 
-function enableValidation() {
 
-const formsList = document.querySelectorAll('.form');
+
+function enableValidation({formSelector, ...rest}) {
+
+const formsList = document.querySelectorAll(formSelector);
 
 formsList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
     });
 
-    setEventListeners (formElement);
+    setEventListeners (formElement, rest);
 });
 };
-enableValidation();
+enableValidation(validationElements);
 
 
 
 
-
-function setEventListeners (formElement) {
-  const inputsList = formElement.querySelectorAll('.popup__input');
-  const submitButton = formElement.querySelector('.submit-button');
+function setEventListeners (formElement, {inputSelector, submitButtonSelector, ...rest}) {
+   
+  const inputsList = formElement.querySelectorAll(inputSelector);
+  const submitButton = formElement.querySelector(submitButtonSelector);
   inputsList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
         checkInputValidity(formElement, inputElement);
