@@ -19,6 +19,7 @@ formsList.forEach((formElement) => {
     });
 
     setEventListeners (formElement, rest);
+    
 });
 };
 enableValidation(validationElements);

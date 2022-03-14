@@ -160,11 +160,9 @@ function closePopupByEsc(popup) {
 
 
 
-function resetPopupInput(image, title) {
-  image.value = '';
-  title.value = '';
+function resetPopupFormInputs(form) {
+  form.reset();
 };
-
 
 
 //Добавить новую карточку на страницу
@@ -172,13 +170,13 @@ function addNewItem(evt) {
   evt.preventDefault();
       
   elements.prepend(createItem(newItemImage.value, newItemTitle.value));
-  resetPopupInput(newItemImage, newItemTitle);
   
+  resetPopupFormInputs(popupAddItemForm);
   closeAddItemPopup();
 };
 
-
 popupAddItemForm.addEventListener('submit', addNewItem);
+
 
 
 
