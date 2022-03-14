@@ -1,5 +1,7 @@
 .submit-button_disabled {
-    background-color: #000;
+    background-color: #FFF;
+    color: #000;
+    border: 1px solid #000;
     opacity: .2;
 }
 
