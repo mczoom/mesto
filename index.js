@@ -117,14 +117,16 @@ function showImagePopup() {
 };
 
 
+
 //Отобразить попап
 function openPopup(popup) {    
   popup.classList.add('popup_opened');
+  setСlosePopupByEscListener();
 };
 
 
 function openAddItemPopup() {
-  openPopup(popupAddItem);
+  openPopup(popupAddItem);  
 };
 
 addButton.addEventListener('click', openAddItemPopup);
@@ -143,20 +145,24 @@ function closeImagePopup() {
 imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
-function closeEditProfilePopup() {
-  closePopup(popupEditProfile);
+
+//Закрыть попап по нажатию на Esc и снять слушатель
+const closePopupByEsc = function(evt) {
+  const popupIsOpened = document.querySelector('.popup_opened');
+  if(evt.key === 'Escape') {
+    closePopup(popupIsOpened);
+  };
+  removeСlosePopupByEscListener();
 };
 
 
+function setСlosePopupByEscListener() {
+  document.addEventListener('keydown', closePopupByEsc);
+  };
 
-//Закрывать попап по нажатию на Esc
-function closePopupByEsc(popup) {
-  document.addEventListener('keydown', function(evt) {
-    if(evt.key === 'Escape') {
-      closePopup(popup);
-    }
-  });
-};
+function removeСlosePopupByEscListener() {
+  document.removeEventListener('keydown', closePopupByEsc);
+  };
 
 
 
@@ -173,6 +179,7 @@ function addNewItem(evt) {
   
   resetPopupFormInputs(popupAddItemForm);
   closeAddItemPopup();
+  enableValidation(validationElements);
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
@@ -197,15 +204,13 @@ function closePopupByOverlayClick(popupOverlay, popupContent) {
   });
 };
 
-function setPopupsEventListenersForOverlayAndEscClose() {
+function setPopupsEventListenersForOverlayClose() {
   closePopupByOverlayClick(popupEditProfile, popupEditProfileForm);
   closePopupByOverlayClick(popupAddItem, popupAddItemContainer);
   closePopupByOverlayClick(imagePopup, imagePopupContainer);
-  closePopupByEsc(popupEditProfile);
-  closePopupByEsc(popupAddItem);
-  closePopupByEsc(imagePopup);
 }
-setPopupsEventListenersForOverlayAndEscClose();
+setPopupsEventListenersForOverlayClose();
+
 
 
 //ПР4
@@ -233,6 +238,6 @@ function SubmitProfileEditForm (evt) {
     userName.textContent = popupUserName.value;
     userOccupation.textContent = popupUserOccupation.value;
     closePopup(popupEditProfile);
-};
+  };
 
 popupEditProfileForm.addEventListener('submit', SubmitProfileEditForm);
