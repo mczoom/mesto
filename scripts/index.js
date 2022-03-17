@@ -38,22 +38,21 @@ const imagePopupCloseButton = document.querySelector('.image-popup__close-button
 const popupAddItemAddButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 const popupAddItemContainer = popupAddItem.querySelector('.popup-add-item__container');
-const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
+const popupAddItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
-const newItemTitle = popupAddItemForm.querySelector('.popup__input_type_place');
-const newItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
+const popupAddItemTitle = popupAddItemForm.querySelector('.popup__input_type_place');
+const popupAddItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
 const popupAddItemInputs = popupAddItemForm.querySelectorAll('.popup__input');
 const popupAddItemSubmitButton = popupAddItemForm.querySelector('.submit-button');
 
 const userName = document.querySelector('.profile__user-name');
+const userOccupation = document.querySelector('.profile__user-occupation');
 const popupEditProfile = document.querySelector('.popup-edit-profile');
 const popupEditProfileForm = popupEditProfile.querySelector('.popup__container');
-const popupUserName = popupEditProfile.querySelector('.popup__input_type_name');
-
-const userOccupation = document.querySelector('.profile__user-occupation');
-const popupUserOccupation = popupEditProfile.querySelector('.popup__input_type_occupation');
-const editButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = document.querySelector('.popup__close-button');
+const popupEditProfileUsernameInput = popupEditProfile.querySelector('.popup__input_type_name');
+const popupEditProfileUserOccupationInput = popupEditProfile.querySelector('.popup__input_type_occupation');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popupEditProfileCloseButton = document.querySelector('.popup__close-button');
 
 
 
@@ -176,7 +175,7 @@ function resetPopupFormInputs(form) {
 function addNewItem(evt) {
   evt.preventDefault();
       
-  cardsContainer.prepend(createItem(newItemImage.value, newItemTitle.value));
+  cardsContainer.prepend(createItem(popupAddItemImage.value, popupAddItemTitle.value));
   
   resetPopupFormInputs(popupAddItemForm);
   toggleSubmitButtonState (popupAddItemInputs, popupAddItemSubmitButton);
@@ -193,7 +192,7 @@ function closeAddItemPopup() {
   closePopup(popupAddItem);
 };
 
-addItemCloseButton.addEventListener('click', closeAddItemPopup);
+popupAddItemCloseButton.addEventListener('click', closeAddItemPopup);
 
 
 //Закрывать попап по нажатию на оверлэй
@@ -218,8 +217,8 @@ setPopupsEventListenersForOverlayClose();
 //ПР4
 
 function fillProfilePopupInputs() {
-    popupUserName.value = userName.textContent;
-    popupUserOccupation.value = userOccupation.textContent;
+    popupEditProfileUsernameInput.value = userName.textContent;
+    popupEditProfileUserOccupationInput.value = userOccupation.textContent;
 };
 
 
@@ -229,16 +228,16 @@ function editProfile() {
   openPopup(popupEditProfile);
 };
 
-editButton.addEventListener('click', editProfile);
+profileEditButton.addEventListener('click', editProfile);
 
-popupCloseButton.addEventListener('click', closePopup(popupEditProfile));
+popupEditProfileCloseButton.addEventListener('click', closePopup(popupEditProfile));
 
 
 //Редактировать профиль
 function SubmitProfileEditForm (evt) {
     evt.preventDefault();
-    userName.textContent = popupUserName.value;
-    userOccupation.textContent = popupUserOccupation.value;
+    userName.textContent = popupEditProfileUsernameInput.value;
+    userOccupation.textContent = popupEditProfileUserOccupationInput.value;
     closePopup(popupEditProfile);
   };
 
