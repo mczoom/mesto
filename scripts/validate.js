@@ -17,9 +17,8 @@ formsList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
     });
-
-    setEventListeners (formElement, rest);
     
+    setEventListeners (formElement, rest);    
 });
 };
 enableValidation(validationElements);
@@ -83,5 +82,5 @@ function toggleSubmitButtonState (inputsList, submitButton) {
     } else {
         submitButton.classList.remove('submit-button_disabled');
         submitButton.removeAttribute('disabled');
-    };
+    }
 };

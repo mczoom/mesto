@@ -28,20 +28,22 @@ const initialItems = [
 
 const itemTemplate = document.querySelector('#item').content;
 
-const elements = document.querySelector('.elements');
+const cardsContainer = document.querySelector('.elements');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupContainer = imagePopup.querySelector('.image-popup__container');
 const imagePopupPicture = imagePopup.querySelector('.image-popup__image');
 const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
 const imagePopupCloseButton = document.querySelector('.image-popup__close-button')
 
-const addButton = document.querySelector('.profile__add-button');
+const popupAddItemAddButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 const popupAddItemContainer = popupAddItem.querySelector('.popup-add-item__container');
 const addItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
 const newItemTitle = popupAddItemForm.querySelector('.popup__input_type_place');
 const newItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
+const popupAddItemInputs = popupAddItemForm.querySelectorAll('.popup__input');
+const popupAddItemSubmitButton = popupAddItemForm.querySelector('.submit-button');
 
 const userName = document.querySelector('.profile__user-name');
 const popupEditProfile = document.querySelector('.popup-edit-profile');
@@ -94,7 +96,7 @@ function createItem(image, title) {
 //Добавить карточки из массива
 function renderItems (array) {
   array.forEach((item) => {
-    elements.append(createItem(item.link, item.name));
+    cardsContainer.append(createItem(item.link, item.name));
   });  
 };
 
@@ -112,8 +114,7 @@ function getImagePopupData() {
 function showImagePopup() {
   openPopup(imagePopup);
   getImagePopupData();
-  imagePopup.addEventListener('click', closeImagePopup);
-  
+  imagePopup.addEventListener('click', closeImagePopup);  
 };
 
 
@@ -129,7 +130,7 @@ function openAddItemPopup() {
   openPopup(popupAddItem);  
 };
 
-addButton.addEventListener('click', openAddItemPopup);
+popupAddItemAddButton.addEventListener('click', openAddItemPopup);
 
 
 
@@ -147,7 +148,7 @@ imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
 //Закрыть попап по нажатию на Esc и снять слушатель
-const closePopupByEsc = function(evt) {
+const closePopupByEsc = (evt) => {
   const popupIsOpened = document.querySelector('.popup_opened');
   if(evt.key === 'Escape') {
     closePopup(popupIsOpened);
@@ -175,11 +176,12 @@ function resetPopupFormInputs(form) {
 function addNewItem(evt) {
   evt.preventDefault();
       
-  elements.prepend(createItem(newItemImage.value, newItemTitle.value));
+  cardsContainer.prepend(createItem(newItemImage.value, newItemTitle.value));
   
   resetPopupFormInputs(popupAddItemForm);
-  closeAddItemPopup();
-  enableValidation(validationElements);
+  toggleSubmitButtonState (popupAddItemInputs, popupAddItemSubmitButton);
+
+  closeAddItemPopup();  
 };
 
 popupAddItemForm.addEventListener('submit', addNewItem);
