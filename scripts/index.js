@@ -133,26 +133,29 @@ popupAddItemAddButton.addEventListener('click', openAddItemPopup);
 
 
 
-//Закрыть попап
+//Закрыть попап и снять слушатель Esc
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  removeСlosePopupByEscListener();
 };
 
+
 function closeImagePopup() {
-  closePopup(imagePopup);
+  closePopup(imagePopup);  
 };
 
 imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
 
-//Закрыть попап по нажатию на Esc и снять слушатель
+//Закрыть попап по нажатию на Esc
 const closePopupByEsc = (evt) => {
-  const popupIsOpened = document.querySelector('.popup_opened');
+  
   if(evt.key === 'Escape') {
+    const popupIsOpened = document.querySelector('.popup_opened');
     closePopup(popupIsOpened);
   };
-  removeСlosePopupByEscListener();
+  
 };
 
 
