@@ -103,9 +103,13 @@ renderItems(initialItems);
 
 
 function getImagePopupData() {
-  imagePopupPicture.src = event.target.src;
-  imagePopupPicture.alt = event.target.nextElementSibling.textContent;
-  imagePopupTitle.textContent = event.target.nextElementSibling.textContent;
+  const card = event.target.closest('.item');
+  const cardPicture = card.querySelector('.item__image');
+  const cardTitle = card.querySelector('.item__title');
+  
+  imagePopupPicture.src = cardPicture.src;
+  imagePopupPicture.alt = cardTitle.textContent;
+  imagePopupTitle.textContent = cardTitle.textContent;
 };
 
 
