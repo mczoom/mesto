@@ -59,7 +59,7 @@ const hideInputError = (formElement, inputElement) => {
     errorElement.classList.remove('popup__input-error_active');
     errorElement.textContent = '';
     inputElement.classList.remove('popup__input_invalid');
-};
+}
 
 
 function checkInputValidity(formElement, inputElement) {
@@ -69,7 +69,7 @@ function checkInputValidity(formElement, inputElement) {
     } else {
         hideInputError (formElement, inputElement);
     }
-};
+}
 
 function toggleSubmitButtonState (inputsList, submitButton) {
     const hasInvalidInput = Array.from(inputsList).some((inputElement) => {
@@ -83,4 +83,4 @@ function toggleSubmitButtonState (inputsList, submitButton) {
         submitButton.classList.remove('submit-button_disabled');
         submitButton.removeAttribute('disabled');
     }
-};
+}

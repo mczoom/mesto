@@ -1,3 +1,14 @@
+import {FormValidator} from './val.js'
+
+const validationElements = {
+  formSelector: '.form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.submit-button',
+  inactiveButtonClass: 'submit-button_disabled',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error_active'
+};
+
 const initialItems = [
     {
       name: 'Красное море',
@@ -53,6 +64,9 @@ const popupEditProfileUsernameInput = popupEditProfile.querySelector('.popup__in
 const popupEditProfileUserOccupationInput = popupEditProfile.querySelector('.popup__input_type_occupation');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEditProfileCloseButton = document.querySelector('.popup__close-button');
+
+const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItem);
+popupAddItemFormValidation.enableValidation();
 
 
 
@@ -249,3 +263,8 @@ function SubmitProfileEditForm (evt) {
   };
 
 popupEditProfileForm.addEventListener('submit', SubmitProfileEditForm);
+
+
+
+
+
