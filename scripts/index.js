@@ -65,8 +65,11 @@ const popupEditProfileUserOccupationInput = popupEditProfile.querySelector('.pop
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEditProfileCloseButton = document.querySelector('.popup__close-button');
 
-const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItem);
+const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
 popupAddItemFormValidation.enableValidation();
+
+const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
+popupEditProfileFormValidation.enableValidation();
 
 
 
@@ -199,7 +202,7 @@ function addNewItem(evt) {
   cardsContainer.prepend(createItem(popupAddItemImage.value, popupAddItemTitle.value));
   
   resetPopupFormInputs(popupAddItemForm);
-  toggleSubmitButtonState (popupAddItemInputs, popupAddItemSubmitButton);
+  this._toggleSubmitButtonState (popupAddItemInputs, popupAddItemSubmitButton);
 
   closeAddItemPopup();  
 };
