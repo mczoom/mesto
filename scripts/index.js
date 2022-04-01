@@ -1,4 +1,4 @@
-import {FormValidator} from './val.js'
+import {FormValidator} from './formValidator.js'
 
 const validationElements = {
   formSelector: '.form',
@@ -81,13 +81,13 @@ function deleteItem(event) {
 
 
 //Лайкнуть/анлайкнуть карточку
-function switchLikeButton(event) {
+/*function switchLikeButton(event) {
   event.target.classList.toggle('item__like-button_active');
 };
 
 
 //Навесить обработчики
-function setCardEventListeners(item) {
+function setItemEventListeners(item) {
   item.querySelector('.item__image').addEventListener('click', showImagePopup);
   item.querySelector('.item__like-button').addEventListener('click', switchLikeButton);
   item.querySelector('.item__delete-button').addEventListener('click', deleteItem);  
@@ -104,10 +104,10 @@ function createItem(image, title) {
   itemImage.alt = title;
   itemTitle.textContent = title;
         
-  setCardEventListeners(elementsItem);  
+  setItemEventListeners(elementsItem);  
   return elementsItem;
 };
-
+*/
 
 //Добавить карточки из массива
 function renderItems (array) {
@@ -131,11 +131,12 @@ function getImagePopupData() {
 
 
 //Отобразить попап с увеличенной картинкой
-function showImagePopup() {
+/*function showImagePopup() {
   openPopup(imagePopup);
   getImagePopupData();
   imagePopup.addEventListener('click', closeImagePopup);  
 };
+*/
 
 
 
@@ -170,7 +171,7 @@ imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
 //Закрыть попап по нажатию на Esc
-const closePopupByEsc = (evt) => {
+/*const closePopupByEsc = (evt) => {
   
   if(evt.key === 'Escape') {
     const popupIsOpened = document.querySelector('.popup_opened');
@@ -183,11 +184,12 @@ const closePopupByEsc = (evt) => {
 function setСlosePopupByEscListener() {
   document.addEventListener('keydown', closePopupByEsc);
   };
+  
 
 function removeСlosePopupByEscListener() {
   document.removeEventListener('keydown', closePopupByEsc);
   };
-
+*/
 
 
 function resetPopupFormInputs(form) {
