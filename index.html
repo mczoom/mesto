@@ -40,20 +40,19 @@
         </template>
       <div class="popup popup-edit-profile">
         <div class="popup-edit-profile__container">
-        <button class="popup__close-button"></button>
-        <form class="form popup__container" name="edit-profile" method="post" novalidate>
-          
-          <p class="popup__title">Редактировать профиль</p>
-          <div class="popup__section">
-            <input class="popup__input popup__input_type_name" id="username-input" placeholder="Введите имя" name="username" type="text" minlength="2" maxlength="40" required>
-            <span class="popup__input-error username-input-error"></span>
-          </div>
-          <div class="popup__section">
-            <input class="popup__input popup__input_type_occupation" id="occupation-input" placeholder="Введите информацию о себе" name="useroccupation" type="text" minlength="2" maxlength="200" required>
-            <span class="popup__input-error occupation-input-error"></span>
-          </div>
-          <button class="popup__submit-button submit-button" type="submit">Сохранить</button>
-        </form>
+          <button class="popup__close-button"></button>
+          <form class="form popup__form" name="edit-profile" method="post" novalidate>          
+            <p class="popup__title">Редактировать профиль</p>
+            <div class="popup__section">
+              <input class="popup__input popup__input_type_name" id="username-input" placeholder="Введите имя" name="username" type="text" minlength="2" maxlength="40" required>
+              <span class="popup__input-error username-input-error"></span>
+            </div>
+            <div class="popup__section">
+              <input class="popup__input popup__input_type_occupation" id="occupation-input" placeholder="Введите информацию о себе" name="useroccupation" type="text" minlength="2" maxlength="200" required>
+              <span class="popup__input-error occupation-input-error"></span>
+            </div>
+            <button class="popup__submit-button submit-button" type="submit">Сохранить</button>
+          </form>
         </div>
       </div>
       <div class="popup popup-add-item">        
