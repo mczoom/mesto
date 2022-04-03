@@ -1,5 +1,5 @@
 import {Card} from './card.js';
-import {closeImagePopup, removeСlosePopupByEscListener, closePopup, closePopupByEsc, setСlosePopupByEscListener, openPopup, imagePopupPicture, imagePopupTitle} from './utils.js';
+import {closeImagePopup, closePopup, closePopupByEsc, setСlosePopupByEscListener, openPopup, imagePopupPicture, imagePopupTitle} from './utils.js';
 import {FormValidator} from './formValidator.js'
 
 const validationElements = {
@@ -152,7 +152,9 @@ function showImagePopup() {
 
 
 function openAddItemPopup() {
-  openPopup(popupAddItem);  
+  openPopup(popupAddItem);
+  popupAddItemFormValidation.toggleSubmitButtonState();
+  
 };
 
 popupAddItemAddButton.addEventListener('click', openAddItemPopup);
@@ -205,11 +207,18 @@ function resetPopupFormInputs(form) {
 //Добавить новую карточку на страницу
 function addNewItem(evt) {
   evt.preventDefault();
-  const card = new Card(item, '#item'); 
+  item.name = popupAddItemTitle.value;
+  item.link = popupAddItemImage.value;
+  
+  const card = new Card(item, '#item');
+  
+  
   cardsContainer.prepend(card.createItem());
   
   resetPopupFormInputs(popupAddItemForm);
-  this._toggleSubmitButtonState (popupAddItemInputs, popupAddItemSubmitButton);
+  
+  popupAddItemFormValidation.toggleSubmitButtonState();
+  
 
   closeAddItemPopup();  
 };
