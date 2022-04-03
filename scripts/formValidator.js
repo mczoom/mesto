@@ -1,13 +1,26 @@
+
+const validationElements = {
+    formSelector: '.form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.submit-button',
+    inactiveButtonClass: 'submit-button_disabled',
+    inputErrorClass: 'popup__input-error',
+    errorClass: 'popup__input-error_active'
+  };
+
+
 export class FormValidator {
     constructor(config, form) {
-      this._config = validationElements;
+      this._config = config;
       this._form = form;
       this._inputsList = this._form.querySelectorAll(this._config.inputSelector);
       this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
+      this._popupAddItemAddButton = document.querySelector('.profile__add-button');
+      this._profileEditButton = document.querySelector('.profile__edit-button');
     }
 
 
-    toggleSubmitButtonState = () => {
+    toggleSubmitButtonState() {
         const hasInvalidInput = Array.from(this._inputsList).some((inputElement) => {
             return !inputElement.validity.valid;
         });
@@ -60,30 +73,27 @@ export class FormValidator {
       
               this.toggleSubmitButtonState();
           });
-          this.toggleSubmitButtonState();
         });
       }
     
     enableValidation() {        
         this._form.addEventListener('submit', (evt) => {
-          evt.preventDefault();        
-          
-          this._setEventListeners();    
+          evt.preventDefault();          
+          this._setEventListeners();
         });
+
+        this._popupAddItemAddButton.addEventListener('click', () => {
+            this._setEventListeners();
+          });
+
+        this._profileEditButton.addEventListener('click', () => {
+            this._setEventListeners();
+          });
     }
 
 
     
 }
 
-
-const validationElements = {
-    formSelector: '.form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.submit-button',
-    inactiveButtonClass: 'submit-button_disabled',
-    inputErrorClass: 'popup__input-error',
-    errorClass: 'popup__input-error_active'
-  };
 
 

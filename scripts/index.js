@@ -154,7 +154,6 @@ function showImagePopup() {
 function openAddItemPopup() {
   openPopup(popupAddItem);
   popupAddItemFormValidation.toggleSubmitButtonState();
-  
 };
 
 popupAddItemAddButton.addEventListener('click', openAddItemPopup);
@@ -209,9 +208,7 @@ function addNewItem(evt) {
   evt.preventDefault();
   item.name = popupAddItemTitle.value;
   item.link = popupAddItemImage.value;
-  
-  const card = new Card(item, '#item');
-  
+  const card = new Card(item, '#item');  
   
   cardsContainer.prepend(card.createItem());
   
@@ -219,7 +216,6 @@ function addNewItem(evt) {
   
   popupAddItemFormValidation.toggleSubmitButtonState();
   
-
   closeAddItemPopup();  
 };
 
