@@ -39,8 +39,10 @@
           </div>
         </template>
       <div class="popup popup-edit-profile">
+        <div class="popup-edit-profile__container">
+        <button class="popup__close-button"></button>
         <form class="form popup__container" name="edit-profile" method="post" novalidate>
-          <button class="popup__close-button"></button>
+          
           <p class="popup__title">Редактировать профиль</p>
           <div class="popup__section">
             <input class="popup__input popup__input_type_name" id="username-input" placeholder="Введите имя" name="username" type="text" minlength="2" maxlength="40" required>
@@ -52,6 +54,7 @@
           </div>
           <button class="popup__submit-button submit-button" type="submit">Сохранить</button>
         </form>
+        </div>
       </div>
       <div class="popup popup-add-item">        
         <div class="popup-add-item__container">
