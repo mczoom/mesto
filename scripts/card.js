@@ -1,4 +1,4 @@
-import {closeImagePopup, openPopup, imagePopup, getImagePopupData} from './utils.js';
+import {closeImagePopup, openPopup, imagePopup, imagePopupPicture, imagePopupTitle} from './utils.js';
 
 export class Card {
     constructor (itemObj, templateSelector) {
@@ -6,11 +6,17 @@ export class Card {
       this._link = itemObj.link;
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');      
     }
+
+    _getImagePopupData = () => {                
+        imagePopupPicture.src = this._link;
+        imagePopupPicture.alt = this._name;
+        imagePopupTitle.textContent = this._name;        
+      };
     
 
-    _showImagePopup() {
+    _showImagePopup = () => {
         openPopup(imagePopup);
-        getImagePopupData();
+        this._getImagePopupData();
         imagePopup.addEventListener('click', closeImagePopup);  
       }
 
