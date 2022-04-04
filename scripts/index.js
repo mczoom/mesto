@@ -1,6 +1,8 @@
 import {Card} from './card.js';
 import {closeImagePopup, closePopup, openPopup, resetPopupFormInputs} from './utils.js';
 import {FormValidator} from './formValidator.js'
+import {imagePopup} from './constants.js';
+
 
 const validationElements = {
   formSelector: '.form',
@@ -39,10 +41,7 @@ const initialItems = [
   ]; 
 
 
-const itemTemplate = document.querySelector('#item').content;
-
 const cardsContainer = document.querySelector('.elements');
-const imagePopup = document.querySelector('.image-popup');
 const imagePopupContainer = imagePopup.querySelector('.image-popup__container');
 const imagePopupCloseButton = document.querySelector('.image-popup__close-button')
 
@@ -83,16 +82,6 @@ function renderItems (array) {
 renderItems(initialItems);
 
 
-function openAddItemPopup() {
-  openPopup(popupAddItem);
-  popupAddItemFormValidation.toggleSubmitButtonState();
-};
-
-popupAddItemAddButton.addEventListener('click', openAddItemPopup);
-
-imagePopupCloseButton.addEventListener('click', closeImagePopup);
-
-
 
 //Добавить новую карточку на страницу
 function addNewItem(evt) {
@@ -110,6 +99,16 @@ function addNewItem(evt) {
 
 popupAddItemForm.addEventListener('submit', addNewItem);
 
+
+
+function openAddItemPopup() {
+  openPopup(popupAddItem);
+  popupAddItemFormValidation.toggleSubmitButtonState();
+};
+
+popupAddItemAddButton.addEventListener('click', openAddItemPopup);
+
+imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
 
 
@@ -139,7 +138,7 @@ setPopupsEventListenersForOverlayClose();
 
 
 
-//ПР4
+//editProfile
 
 function fillProfilePopupInputs() {
     popupEditProfileUsernameInput.value = userName.textContent;
