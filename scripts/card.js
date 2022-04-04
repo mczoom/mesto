@@ -4,13 +4,8 @@ export class Card {
     constructor (itemObj, templateSelector) {
       this._name = itemObj.name;
       this._link = itemObj.link;
-      this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
-      
-      
-      
-      
+      this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');      
     }
-
     
 
     _showImagePopup() {
@@ -19,9 +14,11 @@ export class Card {
         imagePopup.addEventListener('click', closeImagePopup);  
       }
 
+
     _switchLikeButton = () => {
         this._itemLikeButton.classList.toggle('item__like-button_active');
-      }
+    }
+
       
     _deleteItem = () => {
         const deleteCard = this._itemDeleteButton.closest('.item');
@@ -52,10 +49,4 @@ export class Card {
       this._setItemEventListeners();  
       return this._itemElement;
     }
-
-
-
-    
-
-
 }
