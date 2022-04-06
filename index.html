@@ -31,7 +31,7 @@
         <template id="item">
           <div class="item elements__item">
             <button class="item__delete-button"></button>                          
-              <img class="item__image" src="#" alt="">              
+            <img class="item__image" src="#" alt="">              
             <div class="item__info">
               <p class="item__title"></p>  
               <button class="item__like-button"></button>
@@ -40,7 +40,7 @@
         </template>
       <div class="popup popup-edit-profile">
         <div class="popup-edit-profile__container">
-          <button class="popup__close-button"></button>
+          <button class="popup__close-button popup-edit-profile__close-button"></button>
           <form class="form popup__form" name="edit-profile" method="post" novalidate>          
             <p class="popup__title">Редактировать профиль</p>
             <div class="popup__section">
@@ -57,7 +57,7 @@
       </div>
       <div class="popup popup-add-item">        
         <div class="popup-add-item__container">
-          <button class="popup-add-item__close-button"></button>
+          <button class="popup__close-button popup-add-item__close-button"></button>
           <form class="form popup-add-item__form" name="add-new-item" method="post" novalidate>          
             <p class="popup-add-item__title">Новое место</p>
             <div class="popup__section">
@@ -74,7 +74,7 @@
       </div>
       <div class="popup image-popup">
         <figure class="image-popup__container">
-          <button class="image-popup__close-button"></button>
+          <button class="popup__close-button image-popup__close-button"></button>
           <img class="image-popup__image" src="#" alt="">
           <figcaption class="image-popup__title"></figcaption>
         </figure>

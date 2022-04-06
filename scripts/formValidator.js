@@ -4,9 +4,17 @@ export class FormValidator {
       this._form = form;
       this._inputsList = this._form.querySelectorAll(this._config.inputSelector);
       this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
-      this._popupAddItemAddButton = document.querySelector('.profile__add-button');
-      this._profileEditButton = document.querySelector('.profile__edit-button');
+      //this._popupAddItemAddButton = document.querySelector('.profile__add-button');
+      //this._profileEditButton = document.querySelector('.profile__edit-button');
     }
+
+
+    resetValidation() {
+        this.toggleSubmitButtonState();  
+        this._inputsList.forEach((inputElement) => {
+        this._hideInputError(inputElement);
+        });  
+      }
 
 
     toggleSubmitButtonState() {
@@ -26,7 +34,6 @@ export class FormValidator {
 
     _getErrorElement(inputElement) {
         return this._form.querySelector(`.${inputElement.id}-error`);
-
     }
 
 
@@ -34,7 +41,7 @@ export class FormValidator {
         const errorElement = this._getErrorElement(inputElement);    
         errorElement.textContent = errorMessage;
         errorElement.classList.add(this._config.errorClass);
-        inputElement.classList.add('popup__input_invalid');
+        inputElement.classList.add(this._config.invalidInput);
     }
     
     
@@ -42,7 +49,7 @@ export class FormValidator {
         const errorElement = this._getErrorElement(inputElement);
         errorElement.classList.remove(this._config.errorClass);
         errorElement.textContent = '';
-        inputElement.classList.remove('popup__input_invalid');
+        inputElement.classList.remove(this._config.invalidInput);
     }
 
 
@@ -66,21 +73,21 @@ export class FormValidator {
         });
         
     }
-    
+
     
     enableValidation() {        
         this._form.addEventListener('submit', (evt) => {
           evt.preventDefault();          
-          this._setEventListeners();
         });
+        this._setEventListeners();
 
-        this._popupAddItemAddButton.addEventListener('click', () => {
+        /*this._popupAddItemAddButton.addEventListener('click', () => {
             this._setEventListeners();
           });
 
         this._profileEditButton.addEventListener('click', () => {
             this._setEventListeners();
-          });
+          });*/
     }    
 }
 
