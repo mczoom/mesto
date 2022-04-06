@@ -96,10 +96,6 @@ function setListenersForClosePopupByOverlayAndByCloseButton() {
 setListenersForClosePopupByOverlayAndByCloseButton();
 
 
-popupAddItemCloseButton.addEventListener('click', () => {
-  resetPopupFormInputs(popupAddItemForm);
-});
-
 
 //Сформировать карточку
 function createCard(item) {
@@ -141,7 +137,9 @@ popupAddItemForm.addEventListener('submit', addNewItem);
 
 
 function openAddItemPopup() {
+  resetPopupFormInputs(popupAddItemForm);
   openPopup(popupAddItem);
+  popupAddItemFormValidation.resetValidation();  
 };
 
 popupAddItemAddButton.addEventListener('click', openAddItemPopup);
@@ -150,7 +148,6 @@ popupAddItemAddButton.addEventListener('click', openAddItemPopup);
 
 function closeAddItemPopup() {  
   closePopup(popupAddItem);
-  resetPopupFormInputs(popupAddItemForm);
 };
 
 
