@@ -1,6 +1,3 @@
-import {closeImagePopup, openPopup} from './utils.js';
-import {imagePopup, imagePopupPicture, imagePopupTitle} from './constants.js';
-
 export class Card {
     constructor (itemObj, templateSelector, handleCardClick) {
       this._name = itemObj.name;
@@ -9,19 +6,7 @@ export class Card {
       this._handleCardClick = handleCardClick;    
     }
 
-    _getImagePopupData = () => {                
-        imagePopupPicture.src = this._link;
-        imagePopupPicture.alt = this._name;
-        imagePopupTitle.textContent = this._name;        
-      };
-    
-
-    _showImagePopup = () => {
-        openPopup(imagePopup);
-        this._getImagePopupData();
-    }
-
-
+   
     _switchLikeButton = () => {
         this._itemLikeButton.classList.toggle('item__like-button_active');
     }
@@ -34,10 +19,9 @@ export class Card {
 
 
     _setItemEventListeners = () => {
-        this._itemImage.addEventListener('click', this._showImagePopup);
-        /*this._itemImage.addEventListener('click', () => {
+        this._itemImage.addEventListener('click', () => {
           this._handleCardClick(this._name, this._link);
-        });*/
+        });
         this._itemLikeButton.addEventListener('click', this._switchLikeButton);
         this._itemDeleteButton.addEventListener('click', this._deleteItem);  
     }

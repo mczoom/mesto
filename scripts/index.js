@@ -1,6 +1,6 @@
 import {Card} from './Card.js';
-import {closeImagePopup, closePopup, openPopup, resetPopupFormInputs} from './utils.js';
-import {FormValidator} from './FormValidator.js'
+import {FormValidator} from './FormValidator.js';
+import {closePopup, openPopup, resetPopupFormInputs} from './utils.js';
 import {imagePopup} from './constants.js';
 
 
@@ -44,7 +44,8 @@ const initialItems = [
 
 const cardsContainer = document.querySelector('.elements');
 const imagePopupContainer = imagePopup.querySelector('.image-popup__container');
-const imagePopupCloseButton = document.querySelector('.image-popup__close-button')
+const imagePopupPicture = imagePopupContainer.querySelector('.image-popup__image');
+const imagePopupTitle = imagePopupContainer.querySelector('.image-popup__title');
 
 const popups = document.querySelectorAll('.popup')
 
@@ -63,22 +64,40 @@ const popupEditProfileUsernameInput = popupEditProfile.querySelector('.popup__in
 const popupEditProfileUserOccupationInput = popupEditProfile.querySelector('.popup__input_type_occupation');
 const profileEditButton = document.querySelector('.profile__edit-button');
 
-const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
-popupAddItemFormValidation.enableValidation();
+//const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
+//popupAddItemFormValidation.enableValidation();
 
-const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
-popupEditProfileFormValidation.enableValidation();
+//const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
+//popupEditProfileFormValidation.enableValidation();
 
 
-/*function handleCardClick(name, link) {
- 
- const imagePopupPicture = document.querySelector('.image-popup__image');
- const imagePopupTitle = document.querySelector('.image-popup__title');
+function handleCardClick(name, link) {
+
  imagePopupTitle.textContent = name;
  imagePopupPicture.src = link;
-
+ imagePopupPicture.alt = name;
+ 
   openPopup(imagePopup);
-}*/
+}
+
+
+/*const formValidators = {}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config);
+
+    const formName = formElement.getAttribute('name');
+
+   formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(validationElements);*/
+
+
 
 
 function setListenersForClosePopupByOverlayAndByCloseButton() {
@@ -99,7 +118,7 @@ setListenersForClosePopupByOverlayAndByCloseButton();
 
 //Сформировать карточку
 function createCard(item) {
-  const card = new Card(item, '#item');
+  const card = new Card(item, '#item', handleCardClick);
   const cardElement = card.createItem();    
   return cardElement;
 }
