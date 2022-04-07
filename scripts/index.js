@@ -51,7 +51,6 @@ const popups = document.querySelectorAll('.popup')
 
 const popupAddItemAddButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
-const popupAddItemCloseButton = popupAddItem.querySelector('.popup-add-item__close-button');
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
 const popupAddItemTitle = popupAddItemForm.querySelector('.popup__input_type_place');
 const popupAddItemImage = popupAddItemForm.querySelector('.popup__input_type_link');
@@ -64,11 +63,11 @@ const popupEditProfileUsernameInput = popupEditProfile.querySelector('.popup__in
 const popupEditProfileUserOccupationInput = popupEditProfile.querySelector('.popup__input_type_occupation');
 const profileEditButton = document.querySelector('.profile__edit-button');
 
-//const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
-//popupAddItemFormValidation.enableValidation();
+const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
+popupAddItemFormValidation.enableValidation();
 
-//const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
-//popupEditProfileFormValidation.enableValidation();
+const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
+popupEditProfileFormValidation.enableValidation();
 
 
 function handleCardClick(name, link) {
@@ -79,24 +78,6 @@ function handleCardClick(name, link) {
  
   openPopup(imagePopup);
 }
-
-
-/*const formValidators = {}
-
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(formElement, config);
-
-    const formName = formElement.getAttribute('name');
-
-   formValidators[formName] = validator;
-   validator.enableValidation();
-  });
-};
-
-enableValidation(validationElements);*/
-
 
 
 
