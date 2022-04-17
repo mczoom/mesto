@@ -1,6 +1,7 @@
 import {Card} from './Card.js';
 import {Section} from './Section.js';
 import {Popup} from './Popup.js';
+import {PopupWithImage} from './PopupWithImage.js';
 import {FormValidator} from './FormValidator.js';
 //import {closePopup, openPopup, resetPopupFormInputs} from './utils.js';
 import {imagePopup} from './constants.js';
@@ -72,17 +73,22 @@ const popupEditProfileFormValidation = new FormValidator(validationElements, pop
 popupEditProfileFormValidation.enableValidation();
 
 
+//const popup = new Popup(imagePopup);
+
+const image = new PopupWithImage(imagePopup);
+
+
 function handleCardClick(name, link) {
 
  imagePopupTitle.textContent = name;
  imagePopupPicture.src = link;
  imagePopupPicture.alt = name;
  
-  openPopup(imagePopup);
+  image.open();
 }
 
 
-const popup = new Popup('popup-add-item');
+
 
 
 
@@ -160,7 +166,7 @@ function openAddItemPopup() {
   openPopup(popupAddItem);
   popupAddItemFormValidation.resetValidation();  
 };
-console.log(popup);
+
 
 popupAddItemAddButton.addEventListener('click', openAddItemPopup);
 
