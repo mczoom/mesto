@@ -1,6 +1,8 @@
 import {Card} from './Card.js';
+import {Section} from './Section.js';
+import {Popup} from './Popup.js';
 import {FormValidator} from './FormValidator.js';
-import {closePopup, openPopup, resetPopupFormInputs} from './utils.js';
+//import {closePopup, openPopup, resetPopupFormInputs} from './utils.js';
 import {imagePopup} from './constants.js';
 
 
@@ -80,8 +82,11 @@ function handleCardClick(name, link) {
 }
 
 
+const popup = new Popup('popup-add-item');
 
-function setListenersForClosePopupByOverlayAndByCloseButton() {
+
+
+/*function setListenersForClosePopupByOverlayAndByCloseButton() {
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {
@@ -94,9 +99,23 @@ function setListenersForClosePopupByOverlayAndByCloseButton() {
   });
 }
 setListenersForClosePopupByOverlayAndByCloseButton();
+*/
+
+const section = new Section ({
+  items: initialItems,
+  renderer: (cardItem) => {
+    const card = new Card(cardItem, '#item', handleCardClick);
+    const cardElement = card.createItem();
+
+    section.addItem(cardElement);
+  }
+
+}, cardsContainer);
+
+section.renderElements();
 
 
-
+/*
 //Сформировать карточку
 function createCard(item) {
   const card = new Card(item, '#item', handleCardClick);
@@ -115,7 +134,7 @@ function renderItems (array) {
 };
 
 renderItems(initialItems);
-
+*/
 
 
 //Добавить новую карточку на страницу
@@ -141,6 +160,7 @@ function openAddItemPopup() {
   openPopup(popupAddItem);
   popupAddItemFormValidation.resetValidation();  
 };
+console.log(popup);
 
 popupAddItemAddButton.addEventListener('click', openAddItemPopup);
 
@@ -181,8 +201,3 @@ function submitProfileEditForm (evt) {
   };
 
 popupEditProfileForm.addEventListener('submit', submitProfileEditForm);
-
-
-
-
-
