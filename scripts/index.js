@@ -2,6 +2,7 @@ import {Card} from './Card.js';
 import {Section} from './Section.js';
 import {Popup} from './Popup.js';
 import {PopupWithImage} from './PopupWithImage.js';
+import {PopupWithForm} from './PopupWithForm.js';
 import {FormValidator} from './FormValidator.js';
 //import {closePopup, openPopup, resetPopupFormInputs} from './utils.js';
 import {imagePopup} from './constants.js';
@@ -71,6 +72,16 @@ popupAddItemFormValidation.enableValidation();
 
 const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
 popupEditProfileFormValidation.enableValidation();
+
+const popupAddItem2 = new PopupWithForm({
+  popupSelector: popupAddItem,
+  handleFormSubmit: (formData) => {
+      const card = new Card(cardItem, '#item', handleCardClick); 
+      const cardElement = card.createItem();
+      section.addItem(cardElement);
+  }
+  
+});
 
 
 //const popup = new Popup(imagePopup);
