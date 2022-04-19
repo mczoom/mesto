@@ -5,8 +5,8 @@ export class UserInfo {
         this._form = document.querySelector('.popup__form');
 
 
-        //this._inputName = this._form.querySelector('.popup__input_type_name');
-        //this._inputOccupation = this._form.querySelector('.popup__input_type_occupation');
+        this._inputName = this._form.querySelector('.popup__input_type_name');
+        this._inputOccupation = this._form.querySelector('.popup__input_type_occupation');
 
     }
 
@@ -20,13 +20,11 @@ export class UserInfo {
     }
 
 
-    setUserInfo() {
-        this._inputList = this._form.querySelectorAll('.popup__input');
-        this._userInfo = {};
-        this._inputList.forEach(input => {
-            this._formValues[input.name] = input.value;
-          });
+    setUserInfo() {      
+        
+        this._userName.textContent = this._inputName.value;
+        this._userOccupation.textContent = this._inputOccupation.value
           
-        return this._userInfo;
+        
     }
 }

@@ -77,12 +77,22 @@ popupEditProfileFormValidation.enableValidation();
 
 
 
-const userInfo = new UserInfo ({
-  userNameSelector: userName,
-  userInfoSelector: userOccupation
+
+
+const popupEditProfileSubmitHandler = new PopupWithForm({
+  popupSelector: popupEditProfile,
+  handleFormSubmit: () => {
+    const userInfo = new UserInfo ({
+      userNameSelector: userName,
+      userInfoSelector: userOccupation
+    });
+    userInfo.setUserInfo();      
+  }  
 });
 
-console.log(userInfo.getUserInfo());
+popupEditProfileSubmitHandler.setEventListeners();
+
+
 
 
 const popupAddItemSubmitHandler = new PopupWithForm({
@@ -91,11 +101,26 @@ const popupAddItemSubmitHandler = new PopupWithForm({
       const card = new Card(cardItem, '#item', handleCardClick); 
       const cardElement = card.createItem();
       section.addItem(cardElement);
-      
-  }  
+    }  
 });
 
 popupAddItemSubmitHandler.setEventListeners();
+
+function openPopupAddItem() {
+  popupAddItemSubmitHandler.open();
+  popupAddItemFormValidation.resetValidation();
+}
+
+popupAddItemAddButton.addEventListener('click', openPopupAddItem);
+
+
+function openPopupEditProfile() {
+  popupEditProfileSubmitHandler.open();
+  popupEditProfileFormValidation.resetValidation();
+}
+
+profileEditButton.addEventListener('click', openPopupEditProfile);
+
 
 
 
@@ -193,7 +218,6 @@ renderItems(initialItems);
 };*/
 
 
-popupAddItemAddButton.addEventListener('click', popupAddItemSubmitHandler.open);
 
 
 
@@ -206,7 +230,7 @@ popupAddItemAddButton.addEventListener('click', popupAddItemSubmitHandler.open);
 
 //editProfile
 
-function fillProfilePopupInputs() {
+/*function fillProfilePopupInputs() {
     popupEditProfileUsernameInput.value = userName.textContent;
     popupEditProfileUserOccupationInput.value = userOccupation.textContent;
 };
@@ -232,3 +256,4 @@ function submitProfileEditForm (evt) {
   };
 
 popupEditProfileForm.addEventListener('submit', submitProfileEditForm);
+*/
