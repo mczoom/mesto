@@ -73,18 +73,27 @@ popupAddItemFormValidation.enableValidation();
 const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
 popupEditProfileFormValidation.enableValidation();
 
+
+
+
+
+
+
 const popupAddItem2 = new PopupWithForm({
   popupSelector: popupAddItem,
-  handleFormSubmit: (formData) => {
+  handleFormSubmit: (cardItem) => {
       const card = new Card(cardItem, '#item', handleCardClick); 
       const cardElement = card.createItem();
       section.addItem(cardElement);
-  }
-  
+      
+  }  
 });
 
+popupAddItem2.setEventListeners();
 
-//const popup = new Popup(imagePopup);
+
+
+
 
 const image = new PopupWithImage(imagePopup);
 
@@ -97,7 +106,6 @@ function handleCardClick(name, link) {
  
   image.open();
 }
-
 
 
 
@@ -155,7 +163,7 @@ renderItems(initialItems);
 
 
 //Добавить новую карточку на страницу
-function addNewItem(evt) {
+/*function addNewItem(evt) {
   evt.preventDefault();
   const item = {};
   item.name = popupAddItemTitle.value;
@@ -166,26 +174,26 @@ function addNewItem(evt) {
   resetPopupFormInputs(popupAddItemForm);
   
   closeAddItemPopup();  
-};
-
-popupAddItemForm.addEventListener('submit', addNewItem);
+};*/
 
 
 
-function openAddItemPopup() {
+
+
+/*function openAddItemPopup() {
   resetPopupFormInputs(popupAddItemForm);
   openPopup(popupAddItem);
   popupAddItemFormValidation.resetValidation();  
-};
+};*/
 
 
-popupAddItemAddButton.addEventListener('click', openAddItemPopup);
+popupAddItemAddButton.addEventListener('click', popupAddItem2.open);
 
 
 
-function closeAddItemPopup() {  
+/*function closeAddItemPopup() {  
   closePopup(popupAddItem);
-};
+};*/
 
 
 
