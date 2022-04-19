@@ -1,9 +1,11 @@
+import {FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
 import {Section} from './Section.js';
 import {Popup} from './Popup.js';
 import {PopupWithImage} from './PopupWithImage.js';
 import {PopupWithForm} from './PopupWithForm.js';
-import {FormValidator} from './FormValidator.js';
+import {UserInfo} from './UserInfo.js';
+
 //import {closePopup, openPopup, resetPopupFormInputs} from './utils.js';
 import {imagePopup} from './constants.js';
 
@@ -75,11 +77,15 @@ popupEditProfileFormValidation.enableValidation();
 
 
 
+const userInfo = new UserInfo ({
+  userNameSelector: userName,
+  userInfoSelector: userOccupation
+});
+
+console.log(userInfo.getUserInfo());
 
 
-
-
-const popupAddItem2 = new PopupWithForm({
+const popupAddItemSubmitHandler = new PopupWithForm({
   popupSelector: popupAddItem,
   handleFormSubmit: (cardItem) => {
       const card = new Card(cardItem, '#item', handleCardClick); 
@@ -89,7 +95,7 @@ const popupAddItem2 = new PopupWithForm({
   }  
 });
 
-popupAddItem2.setEventListeners();
+popupAddItemSubmitHandler.setEventListeners();
 
 
 
@@ -187,7 +193,7 @@ renderItems(initialItems);
 };*/
 
 
-popupAddItemAddButton.addEventListener('click', popupAddItem2.open);
+popupAddItemAddButton.addEventListener('click', popupAddItemSubmitHandler.open);
 
 
 
