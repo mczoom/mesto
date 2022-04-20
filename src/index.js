@@ -1,10 +1,11 @@
+import './styles/index.css';
 import {FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
 import {Section} from './Section.js';
 import {PopupWithImage} from './PopupWithImage.js';
 import {PopupWithForm} from './PopupWithForm.js';
 import {UserInfo} from './UserInfo.js';
-import {imagePopup} from './constants.js';
+
 
 
 const validationElements = {
@@ -17,30 +18,38 @@ const validationElements = {
   errorClass: 'popup__input-error_active'
 };
 
+
+import redSea from './images/grid-photos/ocean.jpg';
+import ladoga from './images/grid-photos/morning-ocean.jpg';
+import pacificOcean from './images/grid-photos/coast.jpg';
+import bosphorus from './images/grid-photos/ship.jpg';
+import norwegianSea from './images/grid-photos/moonlight-ocean.jpg';
+import schooner from './images/grid-photos/boats.jpg';
+
 const initialItems = [
     {
       name: 'Красное море',
-      link: './images/grid-photos/ocean.jpg'
+      link: redSea
     },
     {
       name: 'Ладожское озеро',
-      link: './images/grid-photos/morning-ocean.jpg'
+      link: ladoga
     },
     {
       name: 'Тихий океан',
-      link: './images/grid-photos/coast.jpg'
+      link: pacificOcean
     },
     {
       name: 'Пролив Босфор',
-      link: './images/grid-photos/ship.jpg'
+      link: bosphorus
     },
     {
       name: 'Норвежское море',
-      link: './images/grid-photos/moonlight-ocean.jpg'
+      link: norwegianSea
     },
     {
       name: 'Рыболовные шхуны в Англии',
-      link: './images/grid-photos/boats.jpg'
+      link: schooner
     }
   ]; 
 
