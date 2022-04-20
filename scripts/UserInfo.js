@@ -4,10 +4,8 @@ export class UserInfo {
         this._userOccupation = userInfoSelector;
         this._form = document.querySelector('.popup__form');
 
-
         this._inputName = this._form.querySelector('.popup__input_type_name');
         this._inputOccupation = this._form.querySelector('.popup__input_type_occupation');
-
     }
 
 
@@ -20,11 +18,8 @@ export class UserInfo {
     }
 
 
-    setUserInfo() {      
-        
+    setUserInfo() {        
         this._userName.textContent = this._inputName.value;
         this._userOccupation.textContent = this._inputOccupation.value
-          
-        
     }
 }

@@ -13,12 +13,12 @@ export class PopupWithImage extends Popup {
 
     open() {
         
-        this._imagePopupTitle.textContent = this._name;
-        this._imagePopupPicture.src = this._itemImage;
-        this._imagePopupTitle.alt = this._name;
+        //this._imagePopupTitle.textContent = this._name;
+        //this._imagePopupPicture.src = this._itemImage;
+        //this._imagePopupTitle.alt = this._name;
         
 
-       
-        super.open();
+       super.setEventListeners();
+       super.open();
     }
 }

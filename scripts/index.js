@@ -126,7 +126,7 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 
 
 
-const image = new PopupWithImage(imagePopup);
+const popupWithImage = new PopupWithImage(imagePopup);
 
 
 function handleCardClick(name, link) {
@@ -135,7 +135,7 @@ function handleCardClick(name, link) {
  imagePopupPicture.src = link;
  imagePopupPicture.alt = name;
  
-  image.open();
+ popupWithImage.open();
 }
 
 
