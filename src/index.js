@@ -81,7 +81,7 @@ popupEditProfileFormValidation.enableValidation();
 
 
 const popupEditProfileSubmitHandler = new PopupWithForm({
-  popupSelector: popupEditProfile,
+  popupSelector: '.popup-edit-profile',
   handleFormSubmit: () => {
     const userInfo = new UserInfo ({
       userNameSelector: userName,
@@ -97,7 +97,7 @@ popupEditProfileSubmitHandler.setEventListeners();
 
 
 const popupAddItemSubmitHandler = new PopupWithForm({
-  popupSelector: popupAddItem,
+  popupSelector: '.popup-add-item',
   handleFormSubmit: (cardItem) => {
       const card = new Card(cardItem, '#item', handleCardClick); 
       const cardElement = card.createItem();
@@ -127,7 +127,7 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 
 
 function handleCardClick(name, link) {
-  const popupWithImage = new PopupWithImage(imagePopup);
+  const popupWithImage = new PopupWithImage('.image-popup');
   imagePopupTitle.textContent = name;
   imagePopupPicture.src = link;
   imagePopupPicture.alt = name;
