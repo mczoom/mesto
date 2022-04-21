@@ -146,6 +146,6 @@ const section = new Section ({
 
     section.addItem(cardElement);
   }
-}, cardsContainer);
+}, '.elements');
 
 section.renderElements();
