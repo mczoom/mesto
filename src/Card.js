@@ -13,8 +13,7 @@ export class Card {
 
       
     _deleteItem = () => {
-        const deleteCard = this._itemDeleteButton.closest('.item');
-        deleteCard.remove();
+        this._itemElement.remove();
     }
 
 

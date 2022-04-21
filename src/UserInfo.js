@@ -2,10 +2,9 @@ export class UserInfo {
     constructor({userNameSelector, userInfoSelector}) {        
         this._userName = userNameSelector;
         this._userOccupation = userInfoSelector;
-        this._form = document.querySelector('.popup__form');
-
-        this._inputName = this._form.querySelector('.popup__input_type_name');
-        this._inputOccupation = this._form.querySelector('.popup__input_type_occupation');
+        
+        this._inputName = document.querySelector('.popup__input_type_name');
+        this._inputOccupation = document.querySelector('.popup__input_type_occupation');
     }
 
 
