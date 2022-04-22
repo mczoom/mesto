@@ -77,21 +77,32 @@ const popupEditProfileFormValidation = new FormValidator(validationElements, pop
 popupEditProfileFormValidation.enableValidation();
 
 
-
-
-
-const popupEditProfileSubmitHandler = new PopupWithForm({
-  popupSelector: '.popup-edit-profile',
-  handleFormSubmit: () => {
-    const userInfo = new UserInfo ({
-      userNameSelector: userName,
-      userInfoSelector: userOccupation
-    });
-    userInfo.setUserInfo();      
-  }  
+const userInfo = new UserInfo ({
+  userNameSelector: '.profile__user-name',
+  userInfoSelector: '.profile__user-occupation'
 });
 
-popupEditProfileSubmitHandler.setEventListeners();
+
+const profileFormEdit = new PopupWithForm({
+  popupSelector: '.popup-edit-profile',
+  handleFormSubmit: (user) => {    
+    userInfo.setUserInfo({user});
+  }
+});
+
+
+function openPopupEditProfile() {
+  userInfo.getUserInfo()  
+  profileFormEdit.open();  
+  popupEditProfileFormValidation.resetValidation();
+}
+
+profileEditButton.addEventListener('click', openPopupEditProfile);
+
+profileFormEdit.setEventListeners();
+
+
+
 
 
 
@@ -115,12 +126,7 @@ function openPopupAddItem() {
 popupAddItemAddButton.addEventListener('click', openPopupAddItem);
 
 
-function openPopupEditProfile() {
-  popupEditProfileSubmitHandler.open();
-  popupEditProfileFormValidation.resetValidation();
-}
 
-profileEditButton.addEventListener('click', openPopupEditProfile);
 
 
 
