@@ -77,6 +77,13 @@ const popupEditProfileFormValidation = new FormValidator(validationElements, pop
 popupEditProfileFormValidation.enableValidation();
 
 
+function createCard(item) {
+  const card = new Card(item, '#item', handleCardClick);
+  const cardElement = card.createItem();    
+  return cardElement;
+}
+
+
 const userInfo = new UserInfo ({
   userNameSelector: '.profile__user-name',
   userInfoSelector: '.profile__user-occupation'
@@ -110,9 +117,8 @@ profileFormEdit.setEventListeners();
 const popupAddItemSubmitHandler = new PopupWithForm({
   popupSelector: '.popup-add-item',
   handleFormSubmit: (cardItem) => {
-      const card = new Card(cardItem, '#item', handleCardClick); 
-      const cardElement = card.createItem();
-      section.addItem(cardElement);
+    createCard(cardItem);
+    section.addItem(createCard(cardItem));
     }  
 });
 
@@ -147,10 +153,8 @@ function handleCardClick(name, link) {
 const section = new Section ({
   items: initialItems,
   renderer: (cardItem) => {
-    const card = new Card(cardItem, '#item', handleCardClick);
-    const cardElement = card.createItem();
-
-    section.addItem(cardElement);
+    createCard(cardItem);
+    cardsContainer.append(createCard(cardItem));
   }
 }, '.elements');
 
