@@ -1,4 +1,4 @@
-import './styles/index.css';
+import './index.css';
 import {FormValidator} from '../components/FormValidator.js';
 import {Card} from '../components/Card.js';
 import {Section} from '../components/Section.js';
@@ -19,12 +19,12 @@ const validationElements = {
 };
 
 
-import redSea from './images/grid-photos/ocean.jpg';
-import ladoga from './images/grid-photos/morning-ocean.jpg';
-import pacificOcean from './images/grid-photos/coast.jpg';
-import bosphorus from './images/grid-photos/ship.jpg';
-import norwegianSea from './images/grid-photos/moonlight-ocean.jpg';
-import schooner from './images/grid-photos/boats.jpg';
+import redSea from '../images/grid-photos/ocean.jpg';
+import ladoga from '../images/grid-photos/morning-ocean.jpg';
+import pacificOcean from '../images/grid-photos/coast.jpg';
+import bosphorus from '../images/grid-photos/ship.jpg';
+import norwegianSea from '../images/grid-photos/moonlight-ocean.jpg';
+import schooner from '../images/grid-photos/boats.jpg';
 
 const initialItems = [
     {
