@@ -57,15 +57,12 @@ const initialItems = [
 const cardsContainer = document.querySelector('.elements');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupContainer = imagePopup.querySelector('.image-popup__container');
-const imagePopupPicture = imagePopupContainer.querySelector('.image-popup__image');
-const imagePopupTitle = imagePopupContainer.querySelector('.image-popup__title');
+
 
 const popupAddItemAddButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
 const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
 
-const userName = document.querySelector('.profile__user-name');
-const userOccupation = document.querySelector('.profile__user-occupation');
 const popupEditProfile = document.querySelector('.popup-edit-profile');
 const popupEditProfileForm = popupEditProfile.querySelector('.popup__form');
 const profileEditButton = document.querySelector('.profile__edit-button');
