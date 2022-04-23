@@ -90,31 +90,28 @@ const userInfo = new UserInfo ({
 });
 
 
-const profileFormEdit = new PopupWithForm({
+const userInfoEdit = new PopupWithForm({
   popupSelector: '.popup-edit-profile',
   handleFormSubmit: (user) => {    
     userInfo.setUserInfo({user});
   }
 });
 
+userInfoEdit.setEventListeners();
+
 
 function openPopupEditProfile() {
   userInfo.getUserInfo()  
-  profileFormEdit.open();  
+  userInfoEdit.open();  
   popupEditProfileFormValidation.resetValidation();
 }
 
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
-profileFormEdit.setEventListeners();
 
 
 
-
-
-
-
-const popupAddItemSubmitHandler = new PopupWithForm({
+const newCardRenderer = new PopupWithForm({
   popupSelector: '.popup-add-item',
   handleFormSubmit: (cardItem) => {
     createCard(cardItem);
@@ -122,10 +119,10 @@ const popupAddItemSubmitHandler = new PopupWithForm({
     }  
 });
 
-popupAddItemSubmitHandler.setEventListeners();
+newCardRenderer.setEventListeners();
 
 function openPopupAddItem() {
-  popupAddItemSubmitHandler.open();
+  newCardRenderer.open();
   popupAddItemFormValidation.resetValidation();
 }
 
@@ -135,18 +132,13 @@ popupAddItemAddButton.addEventListener('click', openPopupAddItem);
 
 
 
+const popupWithImage = new PopupWithImage('.image-popup');
 
 
-
-function handleCardClick(name, link) {
-  const popupWithImage = new PopupWithImage('.image-popup');
-  imagePopupTitle.textContent = name;
-  imagePopupPicture.src = link;
-  imagePopupPicture.alt = name;
-  
-  popupWithImage.open();
+function handleCardClick(name, link) {  
+  popupWithImage.open(name, link);
+  popupWithImage.setEventListeners();
 }
-
 
 
 
@@ -157,5 +149,6 @@ const section = new Section ({
     cardsContainer.append(createCard(cardItem));
   }
 }, '.elements');
+
 
 section.renderElements();
