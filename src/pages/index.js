@@ -65,6 +65,8 @@ const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
 
 const popupEditProfile = document.querySelector('.popup-edit-profile');
 const popupEditProfileForm = popupEditProfile.querySelector('.popup__form');
+const userNameInput = popupEditProfileForm.querySelector('.popup__input_type_name'); 
+const userOccupationInput = popupEditProfileForm.querySelector('.popup__input_type_occupation');
 const profileEditButton = document.querySelector('.profile__edit-button');
 
 const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
@@ -98,9 +100,12 @@ userInfoEdit.setEventListeners();
 
 
 function openPopupEditProfile() {
-  userInfo.getUserInfo()  
-  userInfoEdit.open();  
+  const userInfoInputsData = userInfo.getUserInfo();
+  userNameInput.value = userInfoInputsData.username;
+  userOccupationInput.value = userInfoInputsData.useroccupation;
+    
   popupEditProfileFormValidation.resetValidation();
+  userInfoEdit.open();
 }
 
 profileEditButton.addEventListener('click', openPopupEditProfile);
@@ -111,16 +116,15 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 const newCardRenderer = new PopupWithForm({
   popupSelector: '.popup-add-item',
   handleFormSubmit: (cardItem) => {
-    createCard(cardItem);
     section.addItem(createCard(cardItem));
     }  
 });
 
 newCardRenderer.setEventListeners();
 
-function openPopupAddItem() {
-  newCardRenderer.open();
+function openPopupAddItem() {  
   popupAddItemFormValidation.resetValidation();
+  newCardRenderer.open();
 }
 
 popupAddItemAddButton.addEventListener('click', openPopupAddItem);
@@ -128,9 +132,7 @@ popupAddItemAddButton.addEventListener('click', openPopupAddItem);
 
 
 
-
 const popupWithImage = new PopupWithImage('.image-popup');
-
 
 function handleCardClick(name, link) {  
   popupWithImage.open(name, link);
@@ -142,10 +144,8 @@ function handleCardClick(name, link) {
 const section = new Section ({
   items: initialItems,
   renderer: (cardItem) => {
-    createCard(cardItem);
-    cardsContainer.append(createCard(cardItem));
+    section.addItem(createCard(cardItem));
   }
 }, '.elements');
-
 
 section.renderElements();
