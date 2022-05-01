@@ -101,8 +101,9 @@ userInfoEdit.setEventListeners();
 
 function openPopupEditProfile() {
   const userInfoInputsData = userInfo.getUserInfo();
-  userNameInput.value = userInfoInputsData.username;
-  userOccupationInput.value = userInfoInputsData.useroccupation;
+  console.log(userInfo.getUserInfo());
+  //userNameInput.value = userInfoInputsData.name;
+  //userOccupationInput.value = userInfoInputsData.about;
     
   popupEditProfileFormValidation.resetValidation();
   userInfoEdit.open();
@@ -149,3 +150,17 @@ const section = new Section ({
 }, '.elements');
 
 section.renderElements();
+
+
+
+
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-40/users/me', {
+  headers: {
+    authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
