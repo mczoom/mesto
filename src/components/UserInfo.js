@@ -26,4 +26,4 @@ export class UserInfo {
         this._userName.textContent = user.username;
         this._userOccupation.textContent = user.useroccupation;
     }
-}
+} 
