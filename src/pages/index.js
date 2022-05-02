@@ -98,11 +98,15 @@ const userInfo = new UserInfo ({
   userInfoSelector: '.profile__user-occupation'
 });
 
+  
+
+api.getUserInfo();
 
 const userInfoEdit = new PopupWithForm({
   popupSelector: '.popup-edit-profile',
-  handleFormSubmit: (user) => {    
-    userInfo.setUserInfo({user});
+  handleFormSubmit: () => {    
+    api.setUserInfo();
+    api.getUserInfo();
   }
 });
 

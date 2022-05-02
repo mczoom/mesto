@@ -5,25 +5,18 @@ export class UserInfo {
     }
 
 
+    getUserInfo() {     
+        this._userInfo = {};
+        
+        this._userInfo.username = this._userName.textContent;
+        this._userInfo.useroccupation = this._userOccupation.textContent; 
 
-
-    getUserInfo() {
-      return fetch('https://mesto.nomoreparties.co/v1/cohort-40/users/me', {
-        headers: {
-            authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
-        }
-    })
-      .then(res => res.json())
-      .then((result) => {
-        this._userName.textContent = result.name;
-        this._userOccupation.textContent = result.about;
-      });
+        return this._userInfo; 
     }
 
-   
-    
+
     setUserInfo({user}) {        
         this._userName.textContent = user.username;
         this._userOccupation.textContent = user.useroccupation;
     }
-} 
+}
