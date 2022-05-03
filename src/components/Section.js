@@ -3,6 +3,7 @@ export class Section {
         this._items = items;
         this._renderer = renderer;
         this._containerSelector = document.querySelector(containerSelector);
+        //this._api = api;
     }
 
 
@@ -11,6 +12,15 @@ export class Section {
             this._renderer(item);
         });      
     }
+
+
+    /*saveItem(data) {
+        this._api.addNewCard({
+            name: data.name,
+            link: data.link
+        })
+            .then((res) => this.addItem(res.link));
+    }*/
 
 
     addItem(element) {

@@ -7,6 +7,9 @@ export class Api {
         this._userOccupation = document.querySelector('.profile__user-occupation');
         this._userNameInput = this._form.querySelector('.popup__input_type_name');
         this._userOccupationInput = this._form.querySelector('.popup__input_type_occupation');
+
+        this._popupAddItemInputName = document.querySelector('.popup__input_type_place');
+        this._popupAddItemInputLink = document.querySelector('.popup__input_type_link');        
     }
 
     getInitialCards() {
@@ -19,8 +22,27 @@ export class Api {
             if (res.ok) {
               return res.json();
             }
+            return Promise.reject(`Ошибка: ${res.status}`);
         });
-    }        
+    }
+    
+    
+    addNewCard(card) {
+        return fetch (`${this._baseUrl}cards`, {
+            method: 'POST',
+            headers: {
+                authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(card)
+        })
+        .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });        
+    }
 
 
     getUserInfo() {

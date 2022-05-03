@@ -127,13 +127,28 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 
 
 
+const section = new Section ({
+  items: [], 
+  renderer: (cardItem) => {
+    section.addItem(createCard(cardItem));
+  } 
+}, '.elements');
+
+
+
+
 
 const newCardRenderer = new PopupWithForm({
   popupSelector: '.popup-add-item',
   handleFormSubmit: (cardItem) => {
-    section.addItem(createCard(cardItem));
+    api.addNewCard({name: cardItem.name, link: cardItem.link})
+      .then (data => {
+        section.addItem(createCard(data));
+      })
     }  
 });
+
+
 
 newCardRenderer.setEventListeners();
 
@@ -156,14 +171,6 @@ function handleCardClick(name, link) {
 
 
 
-/*const section = new Section ({
-  items: initialItems,
-  renderer: (cardItem) => {
-    section.addItem(createCard(cardItem));
-  }
-}, '.elements');
-
-section.renderElements();*/
 
 
 
@@ -179,16 +186,7 @@ api.getInitialCards()
 
   
 
+    
+  
 
-
-/*
-fetch('https://mesto.nomoreparties.co/v1/cohort-40/cards', {
-  headers: {
-    authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
-  */
+  
