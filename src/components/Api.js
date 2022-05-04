@@ -9,7 +9,9 @@ export class Api {
         this._userOccupationInput = this._form.querySelector('.popup__input_type_occupation');
 
         this._popupAddItemInputName = document.querySelector('.popup__input_type_place');
-        this._popupAddItemInputLink = document.querySelector('.popup__input_type_link');        
+        this._popupAddItemInputLink = document.querySelector('.popup__input_type_link');
+        
+        this._likeCounter = document.querySelector('.item__like-counter');
     }
 
     getInitialCards() {
@@ -78,7 +80,19 @@ export class Api {
     }
 
 
-
+    countLikes() {
+        return fetch (`${this._baseUrl}cards`, {
+            headers: {
+                authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
+            }
+        })
+        .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+    }
 
 
 

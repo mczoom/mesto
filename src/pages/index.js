@@ -6,7 +6,7 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
-
+import {PopupWithConfirmation} from '../components/PopupWithConfirmation.js';
 
 
 const validationElements = {
@@ -86,6 +86,16 @@ const api = new Api ({
 
 
 
+const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
+
+
+
+
+
+//confirmPopup.open();
+
+
+
 function createCard(item) {
   const card = new Card(item, '#item', handleCardClick);
   const cardElement = card.createItem();    
@@ -130,7 +140,7 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 const section = new Section ({
   items: [], 
   renderer: (cardItem) => {
-    section.addItem(createCard(cardItem));
+    section.addItem(createCard(cardItem));    
   } 
 }, '.elements');
 

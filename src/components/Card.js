@@ -2,6 +2,7 @@ export class Card {
     constructor (itemObj, templateSelector, handleCardClick) {
       this._name = itemObj.name;
       this._link = itemObj.link;
+      this._likesAmount = itemObj.likes;
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
       this._handleCardClick = handleCardClick;    
     }
@@ -11,7 +12,12 @@ export class Card {
         this._itemLikeButton.classList.toggle('item__like-button_active');
     }
 
-      
+     
+    _openDeleteConfirmationPopup = () => {
+
+    }
+
+
     _deleteItem = () => {
         this._itemElement.remove();
     }
@@ -22,7 +28,7 @@ export class Card {
           this._handleCardClick(this._name, this._link);
         });
         this._itemLikeButton.addEventListener('click', this._switchLikeButton);
-        this._itemDeleteButton.addEventListener('click', this._deleteItem);  
+        //this._itemDeleteButton.addEventListener('click', this._deleteItem);  
     }
 
 
@@ -34,10 +40,13 @@ export class Card {
 
       this._itemImage = this._itemElement.querySelector('.item__image');
       this._itemTitle = this._itemElement.querySelector('.item__title');
+      this._likesCounter = this._itemElement.querySelector('.item__like-counter');
        
       this._itemImage.src = this._link;
       this._itemImage.alt = this._name;
       this._itemTitle.textContent = this._name;
+
+      this._likesCounter.textContent = this._likesAmount.length;
               
       this._setItemEventListeners();  
       return this._itemElement;
