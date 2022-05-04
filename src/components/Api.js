@@ -53,30 +53,30 @@ export class Api {
               authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
           }
       })
-        .then(res => res.json())
-        .then((result) => {
-          this._userName.textContent = result.name;
-          this._userOccupation.textContent = result.about;
-        });
-      }
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    });        
+       }
 
 
-    setUserInfo() {
+    setUserInfo(userData) {
         return fetch (`${this._baseUrl}users/me`, {
             method: 'PATCH',
             headers: {
                 authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: `${this._userNameInput.value}`,
-                about: `${this._userOccupationInput.value}`
-              })
+            body: JSON.stringify(userData)
         })
-          .then((result) => {
-            this._userName.textContent = result.name;
-            this._userOccupation.textContent = result.about;
-          })
+        .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
     }
 
 

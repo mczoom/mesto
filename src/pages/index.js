@@ -85,6 +85,9 @@ const api = new Api ({
 });
 
 
+    
+
+
 
 const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
 
@@ -92,7 +95,7 @@ const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
 
 
 
-//confirmPopup.open();
+
 
 
 
@@ -110,13 +113,19 @@ const userInfo = new UserInfo ({
 
   
 
-api.getUserInfo();
+api.getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+  })
+
 
 const userInfoEdit = new PopupWithForm({
   popupSelector: '.popup-edit-profile',
-  handleFormSubmit: () => {    
-    api.setUserInfo();
-    api.getUserInfo();
+  handleFormSubmit: (userData) => {  
+    api.setUserInfo({name: userData.username, about: userData.useroccupation})
+      .then((res) =>{
+        userInfo.setUserInfo(res);
+      })    
   }
 });
 
@@ -124,8 +133,7 @@ userInfoEdit.setEventListeners();
 
 
 function openPopupEditProfile() {
-  const userInfoInputsData = api.getUserInfo();
-  
+    
   //userNameInput.value = userInfoInputsData.name;    !!!!!!!!!!!
   //userOccupationInput.value = userInfoInputsData.about;   !!!!!!!!!!
     
@@ -196,7 +204,16 @@ api.getInitialCards()
 
   
 
-    
+fetch('https://mesto.nomoreparties.co/v1/cohort-40/cards', {
+  headers: {
+    authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+    console.log(result[0].owner._id);
+  }); 
   
 
   

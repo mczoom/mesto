@@ -4,7 +4,9 @@ export class Card {
       this._link = itemObj.link;
       this._likesAmount = itemObj.likes;
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
-      this._handleCardClick = handleCardClick;    
+      this._handleCardClick = handleCardClick;
+      
+      this._deletePopup = document.querySelector('.popup-confirm');
     }
 
    
@@ -13,8 +15,8 @@ export class Card {
     }
 
      
-    _openDeleteConfirmationPopup = () => {
-
+    openDeleteConfirmationPopup = () => {
+      this._deletePopup.classList.add('popup_opened');
     }
 
 
@@ -28,6 +30,7 @@ export class Card {
           this._handleCardClick(this._name, this._link);
         });
         this._itemLikeButton.addEventListener('click', this._switchLikeButton);
+        this._itemDeleteButton.addEventListener('click', this.openDeleteConfirmationPopup);
         //this._itemDeleteButton.addEventListener('click', this._deleteItem);  
     }
 
