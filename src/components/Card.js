@@ -1,11 +1,14 @@
 export class Card {
-    constructor (itemObj, templateSelector, handleCardClick) {
+    constructor (itemObj, templateSelector, handleCardClick, userID) {
       this._name = itemObj.name;
       this._link = itemObj.link;
       this._likesAmount = itemObj.likes;
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
       this._handleCardClick = handleCardClick;
-      
+
+      this._ownerId = itemObj.owner._id;
+      this._userId = userID;
+            
       this._deletePopup = document.querySelector('.popup-confirm');
     }
 
@@ -40,6 +43,10 @@ export class Card {
       
       this._itemLikeButton = this._itemElement.querySelector('.item__like-button');
       this._itemDeleteButton = this._itemElement.querySelector('.item__delete-button');
+
+      if(this._ownerId === this._userId) {
+        this._itemDeleteButton.classList.add('item__delete-button_active');
+      }
 
       this._itemImage = this._itemElement.querySelector('.item__image');
       this._itemTitle = this._itemElement.querySelector('.item__title');

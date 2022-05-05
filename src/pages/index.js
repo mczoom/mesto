@@ -94,13 +94,20 @@ const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
 
 
 
+let userId;
+  console.log(userId);
 
 
+  api.getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+    userId = res._id;
+  })
 
 
 
 function createCard(item) {
-  const card = new Card(item, '#item', handleCardClick);
+  const card = new Card(item, '#item', handleCardClick, userId);
   const cardElement = card.createItem();    
   return cardElement;
 }
@@ -113,10 +120,7 @@ const userInfo = new UserInfo ({
 
   
 
-api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-  })
+
 
 
 const userInfoEdit = new PopupWithForm({
@@ -212,8 +216,22 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-40/cards', {
   .then(res => res.json())
   .then((result) => {
     console.log(result);
-    console.log(result[0].owner._id);
+    
   }); 
-  
+
+
+  fetch('https://mesto.nomoreparties.co/v1/cohort-40/users/me', {
+    headers: {
+      authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
+    }
+  })
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+      
+    }); 
+
+
+
 
   

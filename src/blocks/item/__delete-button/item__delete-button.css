@@ -10,6 +10,7 @@
     width: 18px;
     height: 19px;
     padding: 0;
+    visibility: hidden;
   }
 
   .item__delete-button:hover {
