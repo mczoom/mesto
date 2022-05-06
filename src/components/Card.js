@@ -1,12 +1,14 @@
 export class Card {
-    constructor (itemObj, templateSelector, handleCardClick, userID, {handleCardDelete}) {
+    constructor (itemObj, templateSelector, handleCardClick, userID, {handleCardDelete, handleCardLike}) {
       this._name = itemObj.name;
       this._link = itemObj.link;
       this._cardId = itemObj._id;
-      this._likesAmount = itemObj.likes;
+      this._likes = itemObj.likes;
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
+
       this._handleCardClick = handleCardClick;
       this._handleCardDelete = handleCardDelete;
+      this._handleCardLike = handleCardLike;
 
       this._ownerId = itemObj.owner._id;
       this._userId = userID;
@@ -19,6 +21,20 @@ export class Card {
         this._itemLikeButton.classList.toggle('item__like-button_active');
     }
 
+    setLikeButtonActive = () => {
+      this._itemLikeButton.classList.add('item__like-button_active');
+      this._likesCounter.textContent = this._likes.length;
+    }
+
+    setLikeButtonInactive = () => {
+      this._itemLikeButton.classList.remove('item__like-button_active');
+      this._likesCounter.textContent = this._likes.length;
+    }
+
+    isCardLiked = () => {
+      this._likes.map(item => item._id).includes(this._userId);      
+    }
+
      
     
     deleteItem = () => {
@@ -26,13 +42,21 @@ export class Card {
     }
 
 
+    
+
     _setItemEventListeners = () => {
         this._itemImage.addEventListener('click', () => {
           this._handleCardClick(this._name, this._link);
         });
-        this._itemLikeButton.addEventListener('click', this._switchLikeButton);
+
+        this._itemLikeButton.addEventListener('click', () => {
+          this._handleCardLike();
+          //this.likesCounter();
+        });
+        //this._itemLikeButton.addEventListener('click', this._switchLikeButton);
+
+
         this._itemDeleteButton.addEventListener('click', () => {
-          console.log(this._cardId);
           this._handleCardDelete();
         });
 
@@ -57,7 +81,7 @@ export class Card {
       this._itemImage.alt = this._name;
       this._itemTitle.textContent = this._name;
 
-      this._likesCounter.textContent = this._likesAmount.length;
+      this._likesCounter.textContent = this._likes.length;
               
       this._setItemEventListeners();  
       return this._itemElement;

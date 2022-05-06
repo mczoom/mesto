@@ -84,6 +84,16 @@ const api = new Api ({
   }
 });
 
+/*
+api.getInitialCards()
+  .then((res) => {
+    const arr = res.likes.map(item => item._id);        
+        if(arr.includes(userId)) {
+
+        }
+  })
+*/
+
 
 const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
 
@@ -101,7 +111,32 @@ function createCard (item) {
           confirmPopup.close();
         })        
     })
-  }
+  },
+  handleCardLike: () => {
+    let cardIsLiked = item.likes.map(item => item._id).includes(userId);
+    console.log(cardIsLiked);
+    
+    if(!cardIsLiked) {
+      api.likeCard(item._id)
+      .then(() => {        
+        card.setLikeButtonActive();        
+        console.log('поставлен лайк');
+        })
+      }
+    else {
+        api.removeLikeCard(item._id)
+          .then(() => {
+            card.setLikeButtonInactive();
+          });
+        console.log('лайк снят');
+        }
+      }
+    
+    
+
+      
+    
+  
 });
   const cardElement = card.createItem();    
   return cardElement;
@@ -167,7 +202,7 @@ profileEditButton.addEventListener('click', openPopupEditProfile);
 const section = new Section ({
   items: [], 
   renderer: (cardItem) => {
-    section.addItem(createCard(cardItem));    
+    section.addItem(createCard(cardItem));
   } 
 }, '.elements');
 
