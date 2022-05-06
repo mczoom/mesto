@@ -36,8 +36,6 @@ export class Card {
           this._handleCardDelete();
         });
 
-        
-        //this._itemDeleteButton.addEventListener('click', this._deleteItem);  
     }
 
 
