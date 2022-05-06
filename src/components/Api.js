@@ -95,6 +95,23 @@ export class Api {
     }
 
 
+    deleteCard(id) {
+        return fetch (`${this._baseUrl}cards/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f',
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        })
+    }
+
+
 
 
 

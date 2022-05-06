@@ -85,11 +85,30 @@ const api = new Api ({
 });
 
 
-    
-
-
-
 const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
+
+confirmPopup.setEventListeners();
+
+
+function createCard (item) {
+  const card = new Card (item, '#item', handleCardClick, userId, {
+  handleCardDelete: () => {
+    confirmPopup.open();
+    confirmPopup.setSubmitHandler(() => {
+      api.deleteCard(item._id)
+        .then(() => {
+          card.deleteItem();
+          confirmPopup.close();
+        })        
+    })
+  }
+});
+  const cardElement = card.createItem();    
+  return cardElement;
+}
+
+
+
 
 
 
@@ -106,11 +125,7 @@ let userId;
 
 
 
-function createCard(item) {
-  const card = new Card(item, '#item', handleCardClick, userId);
-  const cardElement = card.createItem();    
-  return cardElement;
-}
+
 
 
 const userInfo = new UserInfo ({
@@ -190,6 +205,7 @@ function handleCardClick(name, link) {
   popupWithImage.open(name, link);
   popupWithImage.setEventListeners();
 }
+
 
 
 

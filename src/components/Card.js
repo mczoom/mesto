@@ -1,10 +1,12 @@
 export class Card {
-    constructor (itemObj, templateSelector, handleCardClick, userID) {
+    constructor (itemObj, templateSelector, handleCardClick, userID, {handleCardDelete}) {
       this._name = itemObj.name;
       this._link = itemObj.link;
+      this._cardId = itemObj._id;
       this._likesAmount = itemObj.likes;
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
       this._handleCardClick = handleCardClick;
+      this._handleCardDelete = handleCardDelete;
 
       this._ownerId = itemObj.owner._id;
       this._userId = userID;
@@ -18,12 +20,8 @@ export class Card {
     }
 
      
-    openDeleteConfirmationPopup = () => {
-      this._deletePopup.classList.add('popup_opened');
-    }
-
-
-    _deleteItem = () => {
+    
+    deleteItem = () => {
         this._itemElement.remove();
     }
 
@@ -33,7 +31,12 @@ export class Card {
           this._handleCardClick(this._name, this._link);
         });
         this._itemLikeButton.addEventListener('click', this._switchLikeButton);
-        this._itemDeleteButton.addEventListener('click', this.openDeleteConfirmationPopup);
+        this._itemDeleteButton.addEventListener('click', () => {
+          console.log(this._cardId);
+          this._handleCardDelete();
+        });
+
+        
         //this._itemDeleteButton.addEventListener('click', this._deleteItem);  
     }
 
