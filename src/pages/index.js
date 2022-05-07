@@ -100,6 +100,16 @@ const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
 confirmPopup.setEventListeners();
 
 
+let userId; 
+
+
+api.getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+    userId = res._id;
+  })
+
+
 function createCard (item) {
   const card = new Card (item, '#item', handleCardClick, userId, {
   handleCardDelete: () => {
@@ -113,15 +123,23 @@ function createCard (item) {
     })
   },
   handleCardLike: () => {
-    let cardIsLiked = item.likes.map(item => item._id).includes(userId);
-    console.log(cardIsLiked);
+    
+
+    
+    
+    const cardIsLiked = item.likes.map(item => item._id).includes(userId);
     
     if(!cardIsLiked) {
       api.likeCard(item._id)
-      .then(() => {        
-        card.setLikeButtonActive();        
+      .then((res) => {  
+        console.log(res.likes.length);      
+        card.setLikeButtonActive();
+        
         console.log('поставлен лайк');
         })
+      
+        
+             
       }
     else {
         api.removeLikeCard(item._id)
@@ -130,12 +148,9 @@ function createCard (item) {
           });
         console.log('лайк снят');
         }
-      }
-    
-    
-
       
-    
+    }
+        
   
 });
   const cardElement = card.createItem();    
@@ -148,15 +163,7 @@ function createCard (item) {
 
 
 
-let userId;
-  console.log(userId);
 
-
-  api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    userId = res._id;
-  })
 
 
 

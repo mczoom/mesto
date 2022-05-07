@@ -23,16 +23,18 @@ export class Card {
 
     setLikeButtonActive = () => {
       this._itemLikeButton.classList.add('item__like-button_active');
-      this._likesCounter.textContent = this._likes.length;
+      //this._likesCounter.textContent = this._likes.length;
     }
 
     setLikeButtonInactive = () => {
       this._itemLikeButton.classList.remove('item__like-button_active');
-      this._likesCounter.textContent = this._likes.length;
+      //this._likesCounter.textContent = this._likes.length;
     }
 
-    isCardLiked = () => {
-      this._likes.map(item => item._id).includes(this._userId);      
+    _isCardLiked = () => {
+      if(this._likes.map(item => item._id).includes(this._userId)) {
+        this._itemLikeButton.classList.add('item__like-button_active');
+      }      
     }
 
      
@@ -51,15 +53,19 @@ export class Card {
 
         this._itemLikeButton.addEventListener('click', () => {
           this._handleCardLike();
-          //this.likesCounter();
+          
         });
-        //this._itemLikeButton.addEventListener('click', this._switchLikeButton);
+        
 
 
         this._itemDeleteButton.addEventListener('click', () => {
           this._handleCardDelete();
         });
 
+    }
+
+    counter = () => {
+      this._likesCounter = this._itemElement.querySelector('.item__like-counter');
     }
 
 
@@ -82,6 +88,8 @@ export class Card {
       this._itemTitle.textContent = this._name;
 
       this._likesCounter.textContent = this._likes.length;
+
+      this._isCardLiked();
               
       this._setItemEventListeners();  
       return this._itemElement;
