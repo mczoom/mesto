@@ -59,6 +59,9 @@ const cardsContainer = document.querySelector('.elements');
 const imagePopup = document.querySelector('.image-popup');
 const imagePopupContainer = imagePopup.querySelector('.image-popup__container');
 
+const popupEditAvatarForm = document.querySelector('.popup-edit-avatar__form');
+const editAvatarButton = document.querySelector('.profile__avatar-button');
+const avatarImage = document.querySelector('.profile__avatar');
 
 const popupAddItemAddButton = document.querySelector('.profile__add-button');
 const popupAddItem = document.querySelector('.popup-add-item');
@@ -76,6 +79,9 @@ popupAddItemFormValidation.enableValidation();
 const popupEditProfileFormValidation = new FormValidator(validationElements, popupEditProfileForm);
 popupEditProfileFormValidation.enableValidation();
 
+const popupEditAvatarFormValidation = new FormValidator(validationElements, popupEditAvatarForm);
+popupEditAvatarFormValidation.enableValidation();
+
 const api = new Api ({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-40/',
   headers: {
@@ -84,20 +90,33 @@ const api = new Api ({
   }
 });
 
-/*
-api.getInitialCards()
-  .then((res) => {
-    const arr = res.likes.map(item => item._id);        
-        if(arr.includes(userId)) {
-
-        }
-  })
-*/
 
 
-const confirmPopup = new PopupWithConfirmation ('.popup-confirm');
 
-confirmPopup.setEventListeners();
+const popupConfirmDelete = new PopupWithConfirmation ('.popup-confirm');
+
+popupConfirmDelete.setEventListeners();
+
+
+
+editAvatarButton.addEventListener('click', () => {
+  popupEditAvatarFormValidation.resetValidation();
+  popupEditAvatar.open();
+})
+
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: '.popup-edit-avatar',
+  handleFormSubmit: (picUrl) => {    
+    api.setNewAvatar (picUrl)
+      .then((res) => {
+        avatarImage.src = res.avatar;     
+        
+        popupEditAvatar.close();
+      })    
+  }
+});
+
+popupEditAvatar.setEventListeners();
 
 
 let userId; 
@@ -107,44 +126,39 @@ api.getUserInfo()
   .then((res) => {
     userInfo.setUserInfo(res);
     userId = res._id;
+    avatarImage.src = res.avatar;
   })
 
 
 function createCard (item) {
   const card = new Card (item, '#item', handleCardClick, userId, {
   handleCardDelete: () => {
-    confirmPopup.open();
-    confirmPopup.setSubmitHandler(() => {
+    popupConfirmDelete.open();
+    popupConfirmDelete.setSubmitHandler(() => {
       api.deleteCard(item._id)
         .then(() => {
           card.deleteItem();
-          confirmPopup.close();
+          popupConfirmDelete.close();
         })        
     })
   },
-  handleCardLike: () => {
+  handleCardLike: () => {   
     
-
-    
-    
-    const cardIsLiked = item.likes.map(item => item._id).includes(userId);
-    
-    if(!cardIsLiked) {
+       
+    if(!card.isCardLiked()) {
       api.likeCard(item._id)
       .then((res) => {  
         console.log(res.likes.length);      
-        card.setLikeButtonActive();
+        card.setLikeButton(res.likes);
         
         console.log('поставлен лайк');
-        })
-      
-        
+        })        
              
-      }
-    else {
+      } else {
         api.removeLikeCard(item._id)
-          .then(() => {
-            card.setLikeButtonInactive();
+          .then((res) => {
+            card.setLikeButton(res.likes);
+            console.log(res.likes.length);
           });
         console.log('лайк снят');
         }

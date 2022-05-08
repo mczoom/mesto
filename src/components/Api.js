@@ -26,9 +26,7 @@ export class Api {
             }
             return Promise.reject(`Ошибка: ${res.status}`);
         });
-    }
-
-    
+    }    
     
     
     addNewCard(card) {
@@ -82,42 +80,10 @@ export class Api {
     }
 
 
-    countLikes() {
-        return fetch (`${this._baseUrl}cards`, {
-            headers: {
-                authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
-            }
-        })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-    }
-
-
+ 
     deleteCard(id) {
         return fetch (`${this._baseUrl}cards/${id}`, {
             method: 'DELETE',
-            headers: {
-                authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f',
-                'Content-Type': 'application/json'
-            },
-        })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-    }
-
-
-
-    isCardliked(id) {
-        return fetch (`${this._baseUrl}cards/${id}/likes`, {
-            method: 'GET',
             headers: {
                 authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f',
                 'Content-Type': 'application/json'
@@ -167,6 +133,22 @@ export class Api {
     }
 
 
+    setNewAvatar(pic) {
+        return fetch (`${this._baseUrl}users/me/avatar`, {
+            method: 'PATCH',
+            headers: {
+                authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pic)
+        })
+        .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });        
+    }
 
 
 
