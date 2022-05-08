@@ -1,17 +1,7 @@
 export class Api {
     constructor({baseUrl, headers}) {
         this._baseUrl = baseUrl;
-        this._headers = headers;
-        this._form = document.querySelector('.popup__form');
-        this._userName = document.querySelector('.profile__user-name');
-        this._userOccupation = document.querySelector('.profile__user-occupation');
-        this._userNameInput = this._form.querySelector('.popup__input_type_name');
-        this._userOccupationInput = this._form.querySelector('.popup__input_type_occupation');
-
-        this._popupAddItemInputName = document.querySelector('.popup__input_type_place');
-        this._popupAddItemInputLink = document.querySelector('.popup__input_type_link');
-        
-        this._likeCounter = document.querySelector('.item__like-counter');
+        this._headers = headers;       
     }
 
     getInitialCards() {
@@ -149,13 +139,4 @@ export class Api {
             return Promise.reject(`Ошибка: ${res.status}`);
         });        
     }
-
-
-
-
-
-
-
-
-
 }

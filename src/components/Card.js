@@ -24,8 +24,7 @@ export class Card {
         } else {
           this.setLikeButtonInactive();
         }
-        console.log(this._likesCounter.textContent);
-    }
+      }
 
     setLikeButtonActive = () => {
       this._itemLikeButton.classList.add('item__like-button_active');
@@ -39,15 +38,12 @@ export class Card {
     isCardLiked = () => {
       const cardIsLiked = this._itemLikeButton.classList.contains('item__like-button_active')
         return cardIsLiked;
-      }      
-    
+      }    
 
         
     deleteItem = () => {
         this._itemElement.remove();
     }
-
-
     
 
     _setItemEventListeners = () => {
@@ -56,16 +52,13 @@ export class Card {
         });
 
         this._itemLikeButton.addEventListener('click', () => {
-          this._handleCardLike();
-          
-        });
-        
+          this._handleCardLike();          
+        });        
 
 
         this._itemDeleteButton.addEventListener('click', () => {
           this._handleCardDelete();
         });
-
     }
 
  
