@@ -3,6 +3,7 @@ export class Api {
         this._baseUrl = baseUrl;
         this._headers = headers;       
     }
+    
 
     getInitialCards() {
         return fetch (`${this._baseUrl}cards`, {
@@ -10,12 +11,7 @@ export class Api {
                 authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
             }
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkResponse);
     }    
     
     
@@ -28,12 +24,7 @@ export class Api {
             },
             body: JSON.stringify(card)
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });        
+        .then(this._checkResponse);
     }
 
 
@@ -43,13 +34,8 @@ export class Api {
               authorization: 'eaf754aa-42d0-42bf-81d5-b64b44519c5f'
           }
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    });        
-       }
+      .then(this._checkResponse);
+    }
 
 
     setUserInfo(userData) {
@@ -61,12 +47,7 @@ export class Api {
             },
             body: JSON.stringify(userData)
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._checkResponse);
     }
 
 
@@ -79,12 +60,7 @@ export class Api {
                 'Content-Type': 'application/json'
             },
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._checkResponse);
     }
 
 
@@ -97,12 +73,7 @@ export class Api {
                 'Content-Type': 'application/json'
             },
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._checkResponse);
     }
 
 
@@ -114,12 +85,7 @@ export class Api {
                 'Content-Type': 'application/json'
             },
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._checkResponse);
     }
 
 
@@ -132,11 +98,19 @@ export class Api {
             },
             body: JSON.stringify(pic)
         })
-        .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });        
+        .then(this._checkResponse);        
+    }
+
+
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Ошибка: ${res.status}`);
+    }
+
+
+    getMainData() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards()])
     }
 }

@@ -7,35 +7,11 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
 import {PopupWithConfirmation} from '../components/PopupWithConfirmation.js';
+import {validationElements, popupEditAvatarForm, editAvatarButton, avatarImage, popupAddItemAddButton, popupAddItem,
+        popupAddItemForm, popupEditProfile, popupEditProfileForm, userNameInput, userOccupationInput, profileEditButton, userName, userOccupation
+       } from '../utils/constants.js';
 
 
-const validationElements = {
-  formSelector: '.form',
-  inputSelector: '.popup__input',
-  invalidInput: 'popup__input_invalid',
-  submitButtonSelector: '.submit-button',
-  inactiveButtonClass: 'submit-button_disabled',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error_active'
-};
-
-
-const popupEditAvatarForm = document.querySelector('.popup-edit-avatar__form');
-const editAvatarButton = document.querySelector('.profile__avatar-edit-button');
-const avatarImage = document.querySelector('.profile__avatar');
-
-const popupAddItemAddButton = document.querySelector('.profile__add-button');
-const popupAddItem = document.querySelector('.popup-add-item');
-const popupAddItemForm = popupAddItem.querySelector('.popup-add-item__form');
-
-const popupEditProfile = document.querySelector('.popup-edit-profile');
-const popupEditProfileForm = popupEditProfile.querySelector('.popup__form');
-const userNameInput = popupEditProfileForm.querySelector('.popup__input_type_name'); 
-const userOccupationInput = popupEditProfileForm.querySelector('.popup__input_type_occupation');
-const profileEditButton = document.querySelector('.profile__edit-button');
-
-const userName = document.querySelector('.profile__user-name');
-const userOccupation = document.querySelector('.profile__user-occupation');
 
 const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
 popupAddItemFormValidation.enableValidation();
@@ -56,14 +32,11 @@ const api = new Api ({
 
 let userId;
 
-
-api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    userId = res._id;
-    avatarImage.src = res.avatar;
-  })
-  .catch(err => console.log(err));
+const userInfo = new UserInfo ({
+  userNameSelector: '.profile__user-name',
+  userInfoSelector: '.profile__user-occupation',
+  userAvatarSelector: '.profile__avatar',
+}); 
 
 
 const popupConfirmDelete = new PopupWithConfirmation ('.popup-confirm');
@@ -78,7 +51,7 @@ const popupEditAvatar = new PopupWithForm({
     popupEditAvatar.renderLoading(true);
     api.setNewAvatar (picUrl)
       .then((res) => {
-        avatarImage.src = res.avatar;        
+        userInfo.setUserInfo(res);
         popupEditAvatar.close();
       })
       .catch(err => console.log(err))
@@ -91,7 +64,6 @@ popupEditAvatar.setEventListeners();
 
 editAvatarButton.addEventListener('click', () => {
   popupEditAvatarFormValidation.resetValidation();
-  popupEditAvatar.renderLoading(false);
   popupEditAvatar.open();
 })
 
@@ -110,7 +82,7 @@ function createCard (item) {
         .catch(err => console.log(err))
     })
   },
-  handleCardLike: () => {       
+  handleCardLike: () => {   
     if(!card.isCardLiked()) {
       api.likeCard(item._id)
       .then((res) => {  
@@ -132,22 +104,14 @@ function createCard (item) {
 
 
 
-
-const userInfo = new UserInfo ({
-  userNameSelector: '.profile__user-name',
-  userInfoSelector: '.profile__user-occupation'
-}); 
-
-
-
-
 const userInfoEdit = new PopupWithForm({
   popupSelector: '.popup-edit-profile',
   handleFormSubmit: (userData) => {
     userInfoEdit.renderLoading(true);
-    api.setUserInfo({name: userData.username, about: userData.useroccupation})
+    api.setUserInfo({name: userData.username, about: userData.useroccupation, avatar: userData.avatar})
       .then((res) =>{
         userInfo.setUserInfo(res);
+        userInfoEdit.close();
       })
       .catch(err => console.log(err))
       .finally(() => userInfoEdit.renderLoading(false))
@@ -160,7 +124,6 @@ function openPopupEditProfile() {
   userNameInput.value = userName.textContent;
   userOccupationInput.value = userOccupation.textContent;
 
-  userInfoEdit.renderLoading(false);
   popupEditProfileFormValidation.resetValidation();
   userInfoEdit.open();
 }
@@ -184,7 +147,8 @@ const newCardRenderer = new PopupWithForm({
     newCardRenderer.renderLoading(true);
     api.addNewCard({name: cardItem.name, link: cardItem.link})
       .then (data => {
-        section.addItem(createCard(data));
+        section.addItem(createCard(data))
+        newCardRenderer.close();
       })
       .catch(err => console.log(err))
       .finally(() => newCardRenderer.renderLoading(false))
@@ -194,7 +158,6 @@ const newCardRenderer = new PopupWithForm({
 newCardRenderer.setEventListeners();
 
 function openPopupAddItem() {
-  newCardRenderer.renderLoading(false);
   popupAddItemFormValidation.resetValidation();
   newCardRenderer.open();
 }
@@ -206,19 +169,17 @@ popupAddItemAddButton.addEventListener('click', openPopupAddItem);
 const popupWithImage = new PopupWithImage('.image-popup');
 
 function handleCardClick(name, link) {  
-  popupWithImage.open(name, link);
-  popupWithImage.setEventListeners();
+  popupWithImage.open(name, link);  
 }
 
+popupWithImage.setEventListeners();
 
 
-api.getInitialCards()
-  .then((items) => {
-    const section = new Section ({items, 
-      renderer: (cardItem) => {
-        section.addItem(createCard(cardItem));
-      } 
-  }, '.elements');
-  section.renderElements();
-})
-.catch(err => console.log(err));
+
+api.getMainData()
+  .then(([userData, items]) => {
+    userInfo.setUserInfo(userData);
+    userId = userData._id;
+    section.renderElements(items);
+  })
+  .catch(err => console.log(err));

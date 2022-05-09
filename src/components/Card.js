@@ -4,15 +4,14 @@ export class Card {
       this._link = itemObj.link;
       this._cardId = itemObj._id;
       this._likes = itemObj.likes;
-      this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');
+      this._ownerId = itemObj.owner._id;
+      this._userId = userID;      
 
       this._handleCardClick = handleCardClick;
       this._handleCardDelete = handleCardDelete;
       this._handleCardLike = handleCardLike;
-
-      this._ownerId = itemObj.owner._id;
-      this._userId = userID;
-            
+      
+      this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');      
       this._deletePopup = document.querySelector('.popup-confirm');
     }
 
@@ -59,12 +58,10 @@ export class Card {
         this._itemDeleteButton.addEventListener('click', () => {
           this._handleCardDelete();
         });
-    }
-
- 
+    } 
 
 
-    createItem() {
+    createItem = () => {
       this._itemElement = this._itemTemplate.cloneNode(true);
       
       this._itemLikeButton = this._itemElement.querySelector('.item__like-button');
@@ -86,7 +83,7 @@ export class Card {
 
       if(this._likes.map(item => item._id).includes(this._userId)) {
         this._itemLikeButton.classList.add('item__like-button_active');
-      }      
+      }   
               
       this._setItemEventListeners();  
       return this._itemElement;
