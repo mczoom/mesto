@@ -7,10 +7,9 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
 import {PopupWithConfirmation} from '../components/PopupWithConfirmation.js';
-import {validationElements, popupEditAvatarForm, editAvatarButton, avatarImage, popupAddItemAddButton, popupAddItem,
-        popupAddItemForm, popupEditProfile, popupEditProfileForm, userNameInput, userOccupationInput, profileEditButton, userName, userOccupation
+import {validationElements, popupEditAvatarForm, editAvatarButton, popupAddItemAddButton, 
+        popupAddItemForm, popupEditProfileForm, userNameInput, userOccupationInput, profileEditButton, userName, userOccupation
        } from '../utils/constants.js';
-
 
 
 const popupAddItemFormValidation = new FormValidator(validationElements, popupAddItemForm);
@@ -36,13 +35,10 @@ const userInfo = new UserInfo ({
   userNameSelector: '.profile__user-name',
   userInfoSelector: '.profile__user-occupation',
   userAvatarSelector: '.profile__avatar',
-}); 
-
+});
 
 const popupConfirmDelete = new PopupWithConfirmation ('.popup-confirm');
-
 popupConfirmDelete.setEventListeners();
-
 
 
 const popupEditAvatar = new PopupWithForm({
@@ -61,13 +57,10 @@ const popupEditAvatar = new PopupWithForm({
 
 popupEditAvatar.setEventListeners();
 
-
 editAvatarButton.addEventListener('click', () => {
   popupEditAvatarFormValidation.resetValidation();
   popupEditAvatar.open();
 })
-
-
 
 function createCard (item) {
   const card = new Card (item, '#item', handleCardClick, userId, {
@@ -103,7 +96,6 @@ function createCard (item) {
 }
 
 
-
 const userInfoEdit = new PopupWithForm({
   popupSelector: '.popup-edit-profile',
   handleFormSubmit: (userData) => {
@@ -131,14 +123,12 @@ function openPopupEditProfile() {
 profileEditButton.addEventListener('click', openPopupEditProfile);
 
 
-
 const section = new Section ({
   items: [], 
   renderer: (cardItem) => {
     section.addItem(createCard(cardItem));
   } 
 }, '.elements');
-
 
 
 const newCardRenderer = new PopupWithForm({
@@ -164,8 +154,6 @@ function openPopupAddItem() {
 
 popupAddItemAddButton.addEventListener('click', openPopupAddItem);
 
-
-
 const popupWithImage = new PopupWithImage('.image-popup');
 
 function handleCardClick(name, link) {  
@@ -173,7 +161,6 @@ function handleCardClick(name, link) {
 }
 
 popupWithImage.setEventListeners();
-
 
 
 api.getMainData()

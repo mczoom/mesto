@@ -14,7 +14,6 @@ export class Card {
       this._itemTemplate = document.querySelector(templateSelector).content.querySelector('.item');      
       this._deletePopup = document.querySelector('.popup-confirm');
     }
-
    
     setLikeButton = (likes) => {
       this._likesCounter.textContent = likes.length;
@@ -33,17 +32,14 @@ export class Card {
       this._itemLikeButton.classList.remove('item__like-button_active');
     }
 
-
     isCardLiked = () => {
       const cardIsLiked = this._itemLikeButton.classList.contains('item__like-button_active')
         return cardIsLiked;
-      }    
-
+      }
         
     deleteItem = () => {
         this._itemElement.remove();
-    }
-    
+    }    
 
     _setItemEventListeners = () => {
         this._itemImage.addEventListener('click', () => {
@@ -52,8 +48,7 @@ export class Card {
 
         this._itemLikeButton.addEventListener('click', () => {
           this._handleCardLike();          
-        });        
-
+        });
 
         this._itemDeleteButton.addEventListener('click', () => {
           this._handleCardDelete();
