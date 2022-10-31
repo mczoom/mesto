@@ -9,6 +9,8 @@
 - CSS (Адаптивная верстка)
 - ООП
 - Webpack
+- БЭМ
+- Figma
 
 ## Сыылка на сайт
 https://mczoom.github.io/mesto/
